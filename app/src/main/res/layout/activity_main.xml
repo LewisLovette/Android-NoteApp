@@ -6,20 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/signupButton"
-        android:layout_width="121dp"
-        android:layout_height="68dp"
-        android:text="Signup"
-        tools:layout_editor_absoluteX="224dp"
-        tools:layout_editor_absoluteY="321dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="121dp"
-        android:layout_height="68dp"
-        android:text="Login"
-        tools:layout_editor_absoluteX="82dp"
-        tools:layout_editor_absoluteY="321dp" />
+        <Button
+            android:id="@+id/signupButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="220dp"
+            android:layout_marginTop="500dp"
+            android:text="signup" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="500dp"
+            android:layout_marginLeft="115dp"
+            android:text="Login" />
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
