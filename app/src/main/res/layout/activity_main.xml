@@ -12,15 +12,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="94dp"
         android:layout_marginTop="373dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginBottom="310dp"
+        android:layout_marginEnd="47dp"
         android:text="@string/signup"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/login"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/login"
@@ -30,9 +26,7 @@
         android:layout_marginStart="46dp"
         android:layout_marginTop="372dp"
         android:layout_marginEnd="95dp"
-        android:layout_marginBottom="311dp"
         android:text="@string/login"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/signup"
         app:layout_constraintTop_toTopOf="parent" />
