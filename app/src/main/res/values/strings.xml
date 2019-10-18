@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">lewislovette-7814291</string>
+    <string name="signup">Signup</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="enterEmail">enter email here</string>
+    <string name="enterPassword">enter password here</string>
+    <string name="back">Back</string>
+    <string name="register">Register</string>
+    <string name="createPasswordHint">create your password here</string>
 </resources>
