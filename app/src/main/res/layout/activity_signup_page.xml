@@ -54,7 +54,6 @@
         android:ems="10"
         android:hint="@string/enterEmail"
         android:inputType="textPersonName"
-        android:text="@string/enterEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="Autofill" />
@@ -78,7 +77,6 @@
         android:ems="10"
         android:hint="@string/enterPassword"
         android:inputType="textPersonName"
-        android:text="@string/enterPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText"
         tools:ignore="Autofill" />
