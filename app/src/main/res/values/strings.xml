@@ -10,4 +10,8 @@
     <string name="register">Register</string>
     <string name="createPasswordHint">create your password here</string>
     <string name="loginPage">Login</string>
+    <string name="save">Save Note</string>
+    <string name="noteHint">Enter your note here!</string>
+    <string name="createNote">Create Note</string>
+    <string name="savedNotes">Saved Notes</string>
 </resources>

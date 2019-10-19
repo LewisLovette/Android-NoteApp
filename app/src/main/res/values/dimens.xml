@@ -2,4 +2,5 @@
 <resources>
     <dimen name="stdSpacing">24dp</dimen>
     <dimen name="bigTopBar">48dp</dimen>
+    <dimen name="notesTopGap">225dp</dimen>
 </resources>
