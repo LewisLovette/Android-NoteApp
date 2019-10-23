@@ -3,4 +3,8 @@
     <dimen name="stdSpacing">24dp</dimen>
     <dimen name="bigTopBar">48dp</dimen>
     <dimen name="notesTopGap">225dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="profile_gap">100</dimen>
 </resources>
