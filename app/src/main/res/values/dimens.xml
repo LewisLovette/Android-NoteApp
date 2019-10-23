@@ -7,4 +7,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="profile_gap">100</dimen>
+    <dimen name="profile_gap2">60</dimen>
+    <dimen name="profile_name_gap">15</dimen>
 </resources>
