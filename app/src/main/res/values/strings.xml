@@ -10,4 +10,21 @@
     <string name="register">Register</string>
     <string name="createPasswordHint">create your password here</string>
     <string name="loginPage">Login</string>
+    <string name="save">Save Note</string>
+    <string name="noteHint">Enter your note here!</string>
+    <string name="createNote">Create Note</string>
+    <string name="savedNotes">Saved Notes</string>
+    <string name="title_activity_navigation_screen">NavigationScreen</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="long_text">This This This This This This This This This This This This This This This This This This This         This This This This This This This This This This This This This This This This This This This          IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS         IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS IS          The The The The The The The The The The The The The The The The The The The The The The The The         The The The The The The The The The The The The The The The The The The The The The The The The          Last Last Last Last Last Last Last Last Last Last Last Last Last Last Last Last Last Last Last         Last Last Last Last Last Last Last Last Last Last Last Last Last Last Last Last Last Last Last          Fragment Fragment Fragment Fragment Fragment Fragment Fragment Fragment Fragment Fragment Fragment         Fragment Fragment Fragment Fragment Fragment Fragment Fragment Fragment Fragment Fragment Fragment</string>
+    <string name="nav_add_note">Add Notes</string>
+    <string name="nav_see_note">See Notes</string>
+    <string name="nav_profile">Profile</string>
+    <string name="notes_here">Notes Here</string>
+    <string name="test_user">Lewis Lovette</string>
+    <string name="test_user2">Aaron Machin</string>
+
+
 </resources>
