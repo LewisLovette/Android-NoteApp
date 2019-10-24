@@ -17,7 +17,7 @@
         android:orientation="vertical">
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/addNoteText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -27,7 +27,7 @@
                 tools:ignore="Autofill" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/saveButton"
                 style="@android:style/Widget.Material.Button.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
