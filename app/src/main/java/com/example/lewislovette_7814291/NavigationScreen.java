@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.lewislovette_7814291.AddNoteFragment;
 import com.example.lewislovette_7814291.ProfileFragment;
@@ -28,15 +29,12 @@ public class NavigationScreen extends AppCompatActivity {
     final Fragment profileFragment = new ProfileFragment();
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = addNoteFragment;
-    Button addNoteButton = (Button) findViewById(R.id.saveButton);
-    EditText addNoteText = (EditText) findViewById(R.id.addNoteText);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_screen);
-
-
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -45,13 +43,6 @@ public class NavigationScreen extends AppCompatActivity {
         fm.beginTransaction().add(R.id.main_container, seeNoteFragment, "2").hide(seeNoteFragment).commit();
         fm.beginTransaction().add(R.id.main_container,addNoteFragment, "1").commit();
 
-        //adding listeners to fragments (as we don't destroy fragments it means that they can all be within the onCreate();
-        addNoteButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Do something in response to button click
-                addNoteFragment.setNote((String) addNoteText.getText());
-            }
-        });
     }
 
 
