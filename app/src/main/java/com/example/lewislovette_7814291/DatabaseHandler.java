@@ -58,4 +58,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         sqLiteDatabase.close();
     }
+
+    public void getNotes(NoteModel userNote) {
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name", userNote.getName());
+        contentValues.put("notes", userNote.getNote());
+
+        long result = sqLiteDatabase.insert("UserNotes", null, contentValues);
+
+        if (result > 0) {
+            Log.d("dbhelper", "inserted successfully");
+        } else {
+            Log.d("dbhelper", "failed to insert");
+        }
+        sqLiteDatabase.close();
+    }
 }

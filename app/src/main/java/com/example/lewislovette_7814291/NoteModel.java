@@ -5,12 +5,14 @@ import android.view.View;
 public class NoteModel {
     //Deals with notes
     private View view;
+    DatabaseHandler db;
 
-    String name;
+    String name = "Lewis";
     String note;
 
     public NoteModel(View view) {
         this.view = view;
+        db = new DatabaseHandler(view.getContext());
     }
 
     public String getName() {
@@ -27,7 +29,6 @@ public class NoteModel {
 
     public void setNote(String note) {
         this.note = note;
-        DatabaseHandler db = new DatabaseHandler(view.getContext());
         db.addNote(this);
     }
 }
