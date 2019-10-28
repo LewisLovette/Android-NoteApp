@@ -10,6 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.lewislovette_7814291.AddNoteFragment;
 import com.example.lewislovette_7814291.ProfileFragment;
@@ -20,24 +24,24 @@ import com.example.lewislovette_7814291.SeeNoteFragment;
 public class NavigationScreen extends AppCompatActivity {
 
 
-    final Fragment fragment1 = new AddNoteFragment();
-    final Fragment fragment2 = new SeeNoteFragment();
-    final Fragment fragment3 = new ProfileFragment();
+    final Fragment addNoteFragment = new AddNoteFragment();
+    final Fragment seeNoteFragment = new SeeNoteFragment();
+    final Fragment profileFragment = new ProfileFragment();
     final FragmentManager fm = getSupportFragmentManager();
-    Fragment active = fragment1;
+    Fragment active = addNoteFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_screen);
 
-
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        fm.beginTransaction().add(R.id.main_container, fragment3, "3").hide(fragment3).commit();
-        fm.beginTransaction().add(R.id.main_container, fragment2, "2").hide(fragment2).commit();
-        fm.beginTransaction().add(R.id.main_container,fragment1, "1").commit();
+        fm.beginTransaction().add(R.id.main_container, profileFragment, "3").hide(profileFragment).commit();
+        fm.beginTransaction().add(R.id.main_container, seeNoteFragment, "2").hide(seeNoteFragment).commit();
+        fm.beginTransaction().add(R.id.main_container,addNoteFragment, "1").commit();
 
     }
 
@@ -49,18 +53,18 @@ public class NavigationScreen extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    fm.beginTransaction().hide(active).show(fragment1).commit();
-                    active = fragment1;
+                    fm.beginTransaction().hide(active).show(addNoteFragment).commit();
+                    active = addNoteFragment;
                     return true;
 
                 case R.id.navigation_dashboard:
-                    fm.beginTransaction().hide(active).show(fragment2).commit();
-                    active = fragment2;
+                    fm.beginTransaction().hide(active).show(seeNoteFragment).commit();
+                    active = seeNoteFragment;
                     return true;
 
                 case R.id.navigation_notifications:
-                    fm.beginTransaction().hide(active).show(fragment3).commit();
-                    active = fragment3;
+                    fm.beginTransaction().hide(active).show(profileFragment).commit();
+                    active = profileFragment;
                     return true;
             }
             return false;
