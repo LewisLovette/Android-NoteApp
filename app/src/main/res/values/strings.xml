@@ -26,6 +26,7 @@
     <string name="test_user">Lewis Lovette</string>
     <string name="test_user2">Aaron Machin</string>
     <string name="deleteNote">Delete Note</string>
+    <string name="title_activity_note_list">NoteList</string>
 
 
 </resources>

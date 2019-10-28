@@ -9,11 +9,17 @@ public class NoteModel {
 
     String name = "Lewis";
     String note;
+    public NoteModel(String name, String note) {
+        this.name = name;
+        this.note = note;
+    }
 
+    /*
     public NoteModel(View view) {
         this.view = view;
         db = new DatabaseHandler(view.getContext());
     }
+    */
 
     public String getName() {
         return name;
@@ -29,6 +35,6 @@ public class NoteModel {
 
     public void setNote(String note) {
         this.note = note;
-        db.addNote(this);
+        //db.addNote(this); not needed for this branch
     }
 }
