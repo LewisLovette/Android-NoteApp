@@ -33,11 +33,11 @@ public class NoteAdapter extends ArrayAdapter<NoteModel> {
                 v = layoutInflater.inflate(resource, parent, false);
             }
 
-            TextView textViewName = (TextView) v.findViewById(R.id.textViewName);
             TextView textViewNote = (TextView) v.findViewById(R.id.textViewNote);
+            //TextView textViewNote = (TextView) v.findViewById(R.id.textViewNote);
 
-            textViewName.setText(notes.get(position).getName());
             textViewNote.setText(notes.get(position).getNote());
+            //textViewNote.setText(notes.get(position).getNote());
 
         } catch (Exception e) {
             e.printStackTrace();

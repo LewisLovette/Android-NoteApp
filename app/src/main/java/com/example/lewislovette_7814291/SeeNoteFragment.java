@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 public class SeeNoteFragment extends Fragment {
 
     private View view;
+    private TextView nameTitle;
 
     private ListView listView;
     String userName;    //as only one user is accessing notes
@@ -43,19 +45,24 @@ public class SeeNoteFragment extends Fragment {
         // Inflate the layout for this fragment
         this.view = inflater.inflate(R.layout.fragment_see_note, container, false);
 
+        nameTitle = view.findViewById(R.id.whosNote);
+
         userName = "Lewis";
 
         userNote = new ArrayList<>();
         userNote.add("Just a list");
-        userNote.add("Of Note");
+        userNote.add("Of Notes");
         userNote.add("And such");
 
         generateNotes();
 
-        Log.v("COMPLEX LIST VIEW: ", "index 0 = " + notes.get(0).getNote());
-        Log.v("COMPLEX LIST VIEW: ", "index 1 =" + notes.get(1).getNote());
-        Log.v("COMPLEX LIST VIEW: ", "index 2 =" + notes.get(2).getNote());
+        nameTitle.setText(userName + "'s Notes");
 
+        /* Tests
+        Log.v("COMPLEX LIST VIEW: ", "index 0 = " + notes.get(0).getNote());
+        Log.v("COMPLEX LIST VIEW: ", "index 1 = " + notes.get(1).getNote());
+        Log.v("COMPLEX LIST VIEW: ", "index 2 = " + notes.get(2).getNote());
+        */
 
         listView = (ListView) view.findViewById(R.id.listViewComplex);
         listView.setAdapter(new NoteAdapter(view.getContext(), R.layout.list_item, notes));
@@ -78,12 +85,5 @@ public class SeeNoteFragment extends Fragment {
             notes.add(new NoteModel(userName, userNote.get(i)));
         }
     }
-
-    public void onButtonClick(View v){
-        startActivity(new Intent(view.getContext(), SeeNoteFragment.class));
-    }
-
-
-
 
 }
