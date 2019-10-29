@@ -74,8 +74,8 @@ public class SeeNoteFragment extends Fragment {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        //as button doesn't work but we know which view it is, set a popup to delete
-                        //pass the view to the delete and if yes then delete
+                        //image button is not clickable so clicks the list instead??
+
                         ImageButton deleteButton = view.findViewById(R.id.deleteButton);
                         TextView textInfo = view.findViewById(R.id.textViewNote);
                         Log.v("BUTTON ID", Integer.toString(deleteButton.getId()));

@@ -41,7 +41,11 @@ public class NoteAdapter extends ArrayAdapter<NoteModel> {
             //TextView textViewNote = (TextView) v.findViewById(R.id.textViewNote);
 
             textViewNote.setText(notes.get(position).getNote());
+
             deleteButton.setImageResource(R.drawable.ic_delete_black_24dp);
+            deleteButton.setClickable(false);
+            deleteButton.setFocusable(false);
+            deleteButton.setFocusableInTouchMode(false);
             //textViewNote.setText(notes.get(position).getNote());
 
         } catch (Exception e) {
