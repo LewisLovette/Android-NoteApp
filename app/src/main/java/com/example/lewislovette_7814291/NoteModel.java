@@ -7,7 +7,7 @@ public class NoteModel {
     private View view;
     DatabaseHandler db;
 
-    String name = "Lewis";
+    String name;
     String note;
     public NoteModel(String name, String note) {
         this.name = name;
