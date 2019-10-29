@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -34,15 +37,38 @@ public class NoteAdapter extends ArrayAdapter<NoteModel> {
             }
 
             TextView textViewNote = (TextView) v.findViewById(R.id.textViewNote);
+            ImageButton deleteButton = (ImageButton) v.findViewById(R.id.deleteButton);
             //TextView textViewNote = (TextView) v.findViewById(R.id.textViewNote);
 
             textViewNote.setText(notes.get(position).getNote());
+            deleteButton.setImageResource(R.drawable.ic_delete_black_24dp);
             //textViewNote.setText(notes.get(position).getNote());
 
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
         }
+
+
+        /*
+        back = v.findViewById(R.id.listLayout);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "I@M A", Toast.LENGTH_SHORT).show();
+            }
+        });
+        //binding button so can delete specified notes
+        deleteButton = (ImageButton) v.findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //hello code here
+            }
+        });
+        */
+
+
         return v;
     }
 

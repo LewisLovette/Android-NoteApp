@@ -5,6 +5,7 @@ import android.view.View;
 public class NoteModel {
     //Deals with notes
     private View view;
+    private NoteModel instance = null;
     DatabaseHandler db;
 
     String name;

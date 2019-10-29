@@ -2,6 +2,7 @@ package com.example.lewislovette_7814291;
 
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,7 @@ public class SeeNoteFragment extends Fragment {
     private ListView listView;
     String userName;    //as only one user is accessing notes
     ArrayList<String> userNote;
+
     public static int[] deleteIcon = {
             R.drawable.ic_delete_black_24dp,
     };
@@ -50,7 +53,7 @@ public class SeeNoteFragment extends Fragment {
         userName = "Lewis";
 
         userNote = new ArrayList<>();
-        userNote.add("Just a list");
+        userNote.add("Just a list | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps ");
         userNote.add("Of Notes");
         userNote.add("And such");
 
@@ -71,12 +74,23 @@ public class SeeNoteFragment extends Fragment {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        //as button doesn't work but we know which view it is, set a popup to delete
+                        //pass the view to the delete and if yes then delete
+                        ImageButton deleteButton = view.findViewById(R.id.deleteButton);
+                        TextView textInfo = view.findViewById(R.id.textViewNote);
+                        Log.v("BUTTON ID", Integer.toString(deleteButton.getId()));
+                        Log.v("TEXT FOR VIEWS", textInfo.getText().toString());
+                        Toast.makeText(view.getContext(), "You clicked the note: " + notes.get(position), Toast.LENGTH_LONG).show();
 
-                        Toast.makeText(view.getContext(), "You clicked " + notes.get(position), Toast.LENGTH_SHORT).show();
                     }
+
                 }
         );
         return view;
+    }
+
+    private void deleteNote(View view){
+
     }
 
     private void generateNotes() {
