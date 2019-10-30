@@ -1,6 +1,8 @@
 package com.example.lewislovette_7814291;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
+
 public class SeeNoteFragment extends Fragment {
 
     private View view;
@@ -29,6 +32,7 @@ public class SeeNoteFragment extends Fragment {
     private ListView listView;
     String userName;    //as only one user is accessing notes
     ArrayList<String> userNote;
+    public static int toDeletePosition;
 
     public static int[] deleteIcon = {
             R.drawable.ic_delete_black_24dp,
@@ -74,14 +78,29 @@ public class SeeNoteFragment extends Fragment {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        //image button is not clickable so clicks the list instead??
-
-                        ImageButton deleteButton = view.findViewById(R.id.deleteButton);
-                        TextView textInfo = view.findViewById(R.id.textViewNote);
-                        Log.v("BUTTON ID", Integer.toString(deleteButton.getId()));
-                        Log.v("TEXT FOR VIEWS", textInfo.getText().toString());
+                        toDeletePosition = position;
                         Toast.makeText(view.getContext(), "You clicked the note: " + notes.get(position), Toast.LENGTH_LONG).show();
 
+                        new AlertDialog.Builder(view.getContext())
+                                .setTitle("Delete entry")
+                                .setMessage("Are you sure you want to delete this entry?")
+
+                                // Specifying a listener allows you to take an action before dismissing the dialog.
+                                // The dialog is automatically dismissed when a dialog button is clicked.
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Continue with delete operation
+                                        Log.v("WHAT IS WHICH: ", Integer.toString(which));
+                                        Log.v("WHAT IS THE POSITION TO DELETE: ", Integer.toString(toDeletePosition));
+                                        notes.remove(toDeletePosition);
+                                        listView.invalidateViews();
+                                    }
+                                })
+
+                                // A null listener allows the button to dismiss the dialog and take no further action.
+                                .setNegativeButton(android.R.string.no, null)
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
                     }
 
                 }
