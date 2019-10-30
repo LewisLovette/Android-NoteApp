@@ -51,11 +51,11 @@ public class SeeNoteFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         this.view = inflater.inflate(R.layout.fragment_see_note, container, false);
-
         nameTitle = view.findViewById(R.id.whosNote);
 
-        userName = "Lewis";
 
+        //TO-DO pull from database
+        userName = "Lewis";
         userNote = new ArrayList<>();
         userNote.add("Just a list | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps ");
         userNote.add("Of Notes");
