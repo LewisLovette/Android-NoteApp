@@ -9,4 +9,5 @@
     <dimen name="profile_gap">100</dimen>
     <dimen name="profile_gap2">60</dimen>
     <dimen name="profile_name_gap">15</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
