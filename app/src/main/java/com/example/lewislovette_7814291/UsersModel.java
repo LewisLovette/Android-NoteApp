@@ -1,10 +1,43 @@
 package com.example.lewislovette_7814291;
 
+import android.content.ContentValues;
+import android.graphics.Bitmap;
+import android.view.View;
+
+import java.io.ByteArrayOutputStream;
+
 public class UsersModel {
     //Dealing with user data
     private String name;
     private String email;
     private String password;
+    private Bitmap profilePic;
+
+    private View view;
+    DatabaseHandler db;
+
+    public UsersModel(View view){
+        this.view = view;
+        db = new DatabaseHandler(view.getContext());
+    }
+
+    public Bitmap getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(Bitmap profilePic) {
+        this.profilePic = profilePic;
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        profilePic.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+        //converting to blob to pass to db;
+        byte[] toBlob = out.toByteArray();
+
+        db.setPicture(toBlob);
+
+    }
 
     public String getName() {
         return name;

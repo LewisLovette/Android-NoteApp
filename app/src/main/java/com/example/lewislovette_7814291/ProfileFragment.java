@@ -24,6 +24,7 @@ public class ProfileFragment extends Fragment {
     Button photoButton;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView imageView;
+    UsersModel usersModel;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -37,7 +38,7 @@ public class ProfileFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_profile, container, false);
         photoButton = view.findViewById(R.id.photoButton);
         imageView = view.findViewById(R.id.profilePicView);
-
+        usersModel = new UsersModel(view);
 
         photoButton.setOnClickListener(new View.OnClickListener() {
 
@@ -61,6 +62,9 @@ public class ProfileFragment extends Fragment {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             imageView.setImageBitmap(imageBitmap);
+
+            //sending to model to be saved
+            usersModel.setProfilePic(imageBitmap);
         }
     }
 
