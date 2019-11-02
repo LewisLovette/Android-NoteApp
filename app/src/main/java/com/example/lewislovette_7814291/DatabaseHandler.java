@@ -18,7 +18,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE userDetails (name, email, password, profilePic BLOB)");
+        db.execSQL("CREATE TABLE userDetails (name, email, password, profilePic BLOB)");    //BLOB is for byte[] of picture
         db.execSQL("CREATE TABLE userNotes (name, notes)");
     }
 
