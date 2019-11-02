@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -39,6 +40,13 @@ public class ProfileFragment extends Fragment {
         photoButton = view.findViewById(R.id.photoButton);
         imageView = view.findViewById(R.id.profilePicView);
         usersModel = new UsersModel(view);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+
+                 public void onClick(View v) {
+                     imageView.startAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.shake));
+                 }
+             });
 
         photoButton.setOnClickListener(new View.OnClickListener() {
 
