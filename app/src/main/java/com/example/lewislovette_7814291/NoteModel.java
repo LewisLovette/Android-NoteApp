@@ -5,11 +5,12 @@ import android.view.View;
 public class NoteModel {
     //Deals with notes
     private View view;
-    private NoteModel instance = null;
     DatabaseHandler db;
 
     String name;
     String note;
+
+
     public NoteModel(String name, String note) {
         this.name = name;
         this.note = note;
@@ -36,6 +37,6 @@ public class NoteModel {
 
     public void setNote(String note) {
         this.note = note;
-        //db.addNote(this); not needed for this branch
+        //db.addNote(name, note); not needed for this branch
     }
 }
