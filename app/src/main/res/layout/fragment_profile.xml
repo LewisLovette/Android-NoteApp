@@ -39,5 +39,14 @@
             android:layout_marginLeft="75dp"
             android:layout_marginRight="75dp"
             android:text="@string/profilePhoto" />
+
+        <Button
+            android:id="@+id/mapButton"
+            style="@android:style/Widget.Material.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="75dp"
+            android:layout_marginRight="75dp"
+            android:text="@string/mapsLocation" />
     </LinearLayout>
 </FrameLayout>
