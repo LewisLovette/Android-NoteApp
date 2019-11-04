@@ -2,8 +2,10 @@ package com.example.lewislovette_7814291;
 
 import android.content.ContentValues;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.View;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 public class UsersModel {
@@ -22,7 +24,12 @@ public class UsersModel {
     }
 
     public Bitmap getProfilePic() {
-        return profilePic;
+        byte[] blob = db.getPicture(name);    //retrieve profile pic for specific user
+
+        ByteArrayInputStream imageStream = new ByteArrayInputStream(blob);
+        Bitmap blobToBitmap = BitmapFactory.decodeStream(imageStream);
+
+        return blobToBitmap;
     }
 
     public void setProfilePic(Bitmap profilePic) {

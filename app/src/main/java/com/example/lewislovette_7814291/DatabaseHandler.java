@@ -2,12 +2,15 @@ package com.example.lewislovette_7814291;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
+
+import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
@@ -89,6 +92,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //get username and update the profile picture
 
         contentValues.put("profilePic", blob);
+
         long result = sqLiteDatabase.insert("userDetails", null, contentValues);
 
         if (result > 0) {
@@ -97,5 +101,28 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             Log.d("dbhelper", "failed to insert");
         }
         sqLiteDatabase.close();
+    }
+
+    public byte[] getPicture(String userName){
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        byte[] blob;
+        Cursor cursor;
+        userName = NULL;
+
+        String sql = "SELECT profilePic FROM userDetails";
+
+
+        //selection args example:  https://stackoverflow.com/questions/10598137/rawqueryquery-selectionargs
+        cursor = sqLiteDatabase.rawQuery(sql, new String[] {});
+
+        if(cursor.getCount() <= 0){
+            Log.v("Cursor", "has no data");
+        }
+
+        cursor.moveToFirst();
+        blob = cursor.getBlob(0);
+
+
+        return blob;
     }
 }

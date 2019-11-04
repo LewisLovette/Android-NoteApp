@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,12 @@ public class ProfileFragment extends Fragment {
         photoButton = view.findViewById(R.id.photoButton);
         imageView = view.findViewById(R.id.profilePicView);
         usersModel = new UsersModel(view);
+
+        if(usersModel.getProfilePic() == null) {
+            Log.v("GETTING PROFILE PIC", "NOT FOUND");
+        }
+
+        imageView.setImageBitmap(usersModel.getProfilePic());
 
         imageView.setOnClickListener(new View.OnClickListener() {
 
