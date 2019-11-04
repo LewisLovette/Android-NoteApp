@@ -28,6 +28,8 @@
     <string name="deleteNote">Delete Note</string>
     <string name="title_activity_note_list">NoteList</string>
     <string name="profilePhoto">Take picture for profile</string>
-
+    <string name="title_activity_maps">Map</string>
+    <string name="google_maps_key">AIzaSyD3gCx6GQf5gXBr35dshUKMT37LuJkkURs</string>
+    <string name="mapsLocation">See Location</string>
 
 </resources>
