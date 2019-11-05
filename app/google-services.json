@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1033243559816-ifk0apvsuus135rs3e2ricisb6r0mrji.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lewislovette_7814291",
+            "certificate_hash": "795ef9f9e30105e0005eed2eb10013a50ab152ed"
+          }
+        },
+        {
           "client_id": "1033243559816-ifqe89tesnb3grlgs0mdruhj15fh052u.apps.googleusercontent.com",
           "client_type": 3
         }
