@@ -1,5 +1,6 @@
 package com.example.lewislovette_7814291;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ public class SignupPage extends AppCompatActivity {
     EditText email;
     EditText password;
     Button signup;
+    Button back;
     String TAG = "Firebase Auth";
 
     @Override
@@ -38,7 +40,7 @@ public class SignupPage extends AppCompatActivity {
         email = findViewById(R.id.emailInput);
         password = findViewById(R.id.passwordInput);
         signup = findViewById(R.id.signup);
-
+        back = findViewById(R.id.back);
         mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -49,6 +51,16 @@ public class SignupPage extends AppCompatActivity {
             public void onClick(View v) {
                 createAccount(email.getText().toString(), password.getText().toString());
             }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
         });
 
     }
