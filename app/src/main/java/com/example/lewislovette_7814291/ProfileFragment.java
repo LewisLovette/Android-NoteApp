@@ -25,6 +25,7 @@ public class ProfileFragment extends Fragment {
 
     View view;
     Button photoButton;
+    Button mapButton;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView imageView;
     UsersModel usersModel;
@@ -41,6 +42,7 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_profile, container, false);
         photoButton = view.findViewById(R.id.photoButton);
+        mapButton = view.findViewById(R.id.mapBack);
         imageView = view.findViewById(R.id.profilePicView);
         userEmail = view.findViewById(R.id.userEmail);
 
@@ -48,12 +50,18 @@ public class ProfileFragment extends Fragment {
 
         userEmail.setText(usersModel.getEmail());
 
-
+        //Todo: set profile pic for specific user (if it exists otherwise set default)
+        /*
+        //setting profile pic if available
         if(usersModel.getProfilePic() == null) {
             Log.v("GETTING PROFILE PIC", "NOT FOUND");
         }
+        else {
+            imageView.setImageBitmap(usersModel.getProfilePic());
+        }
+        */
 
-        imageView.setImageBitmap(usersModel.getProfilePic());
+
 
         imageView.setOnClickListener(new View.OnClickListener() {
 
@@ -73,6 +81,17 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
+
+        mapButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), MapsActivity.class);
+                startActivity(intent);
+                //don't finish on navigation screen.
+            }
+
+        });
+
 
 
 

@@ -34,6 +34,8 @@ public class SeeNoteFragment extends Fragment {
     ArrayList<String> userNote;
     public static int toDeletePosition;
 
+    private UsersModel usersModel;
+
     public static int[] deleteIcon = {
             R.drawable.ic_delete_black_24dp,
     };
@@ -53,9 +55,12 @@ public class SeeNoteFragment extends Fragment {
         this.view = inflater.inflate(R.layout.fragment_see_note, container, false);
         nameTitle = view.findViewById(R.id.whosNote);
 
+        usersModel = UsersModel.getInstance();
+
+
+        userName = usersModel.getEmail();
 
         //TO-DO pull from database
-        userName = "Lewis";
         userNote = new ArrayList<>();
         userNote.add("Just a list | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps ");
         userNote.add("Of Notes");

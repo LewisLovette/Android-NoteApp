@@ -10,7 +10,6 @@ import java.io.ByteArrayOutputStream;
 
 public class UsersModel {
     //Dealing with user data
-    private String name;
     private String email;
     private String password;
     private Bitmap profilePic;
@@ -29,7 +28,7 @@ public class UsersModel {
     }
 
     public Bitmap getProfilePic() {
-        byte[] blob = db.getPicture(name);    //retrieve profile pic for specific user
+        byte[] blob = db.getPicture(email);    //retrieve profile pic for specific user
 
         ByteArrayInputStream imageStream = new ByteArrayInputStream(blob);
         Bitmap blobToBitmap = BitmapFactory.decodeStream(imageStream);
@@ -49,14 +48,6 @@ public class UsersModel {
 
         db.setPicture(toBlob);
 
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getEmail() {

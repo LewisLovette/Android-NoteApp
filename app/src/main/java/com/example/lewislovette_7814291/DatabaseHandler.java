@@ -21,7 +21,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE userDetails (name, email, password, profilePic BLOB)");    //BLOB is for byte[] of picture
+        db.execSQL("CREATE TABLE userDetails (email, password, profilePic BLOB)");    //BLOB is for byte[] of picture
         db.execSQL("CREATE TABLE userNotes (name, notes)");
     }
 
@@ -34,7 +34,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", userDetails.getName());
         contentValues.put("email", userDetails.getEmail());
         contentValues.put("password", userDetails.getPassword());
 
@@ -104,11 +103,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
-    public byte[] getPicture(String userName){
+    public byte[] getPicture(String userEmail){
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         byte[] blob;
         Cursor cursor;
-        userName = NULL;
+        userEmail = NULL;
 
         String sql = "SELECT profilePic FROM userDetails";
 
