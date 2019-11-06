@@ -35,7 +35,6 @@ public class ProfileFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,7 +48,9 @@ public class ProfileFragment extends Fragment {
         usersModel = UsersModel.getInstance();
 
         userEmail.setText(usersModel.getEmail());
-
+        if(usersModel.getProfilePic() != null) {
+            imageView.setImageBitmap(usersModel.getProfilePic());
+        }
         //Todo: set profile pic for specific user (if it exists otherwise set default)
         /*
         //setting profile pic if available
@@ -60,7 +61,6 @@ public class ProfileFragment extends Fragment {
             imageView.setImageBitmap(usersModel.getProfilePic());
         }
         */
-
 
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -91,8 +91,6 @@ public class ProfileFragment extends Fragment {
             }
 
         });
-
-
 
 
         return view;

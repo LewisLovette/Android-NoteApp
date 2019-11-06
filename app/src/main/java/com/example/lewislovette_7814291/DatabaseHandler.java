@@ -65,9 +65,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public void getNotes(NoteModel userNote) {
-
-        //TO-DO
-
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
 
         ContentValues contentValues = new ContentValues();

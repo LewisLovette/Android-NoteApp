@@ -2,10 +2,12 @@ package com.example.lewislovette_7814291;
 
 
 import android.app.AlertDialog;
+import android.arch.lifecycle.Observer;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,16 +32,19 @@ public class SeeNoteFragment extends Fragment {
     private TextView nameTitle;
 
     private ListView listView;
-    String userName;    //as only one user is accessing notes
-    ArrayList<String> userNote;
+    private String userName;    //as only one user is accessing notes
+    private ArrayList<String> userNotes;
     public static int toDeletePosition;
+
+    private NoteModel noteModel;
 
     private UsersModel usersModel;
 
     public static int[] deleteIcon = {
             R.drawable.ic_delete_black_24dp,
     };
-    private ArrayList<NoteModel> notes = new ArrayList<>();
+
+    private ArrayList<String> notes = new ArrayList<>();
 
 
     public SeeNoteFragment() {
@@ -55,16 +60,11 @@ public class SeeNoteFragment extends Fragment {
         this.view = inflater.inflate(R.layout.fragment_see_note, container, false);
         nameTitle = view.findViewById(R.id.whosNote);
 
-        usersModel = UsersModel.getInstance();
+        noteModel = NoteModel.getInstance();
 
+        userName = noteModel.getEmail();
 
-        userName = usersModel.getEmail();
-
-        //TO-DO pull from database
-        userNote = new ArrayList<>();
-        userNote.add("Just a list | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps ");
-        userNote.add("Of Notes");
-        userNote.add("And such");
+        userNotes = noteModel.getNotes();
 
         generateNotes();
 
@@ -77,7 +77,10 @@ public class SeeNoteFragment extends Fragment {
         */
 
         listView = (ListView) view.findViewById(R.id.listViewComplex);
+
+        //Todo: instead of 'notes' send in arraylist of all notes
         listView.setAdapter(new NoteAdapter(view.getContext(), R.layout.list_item, notes));
+
         listView.setOnItemClickListener(
 
                 new AdapterView.OnItemClickListener() {
@@ -119,8 +122,8 @@ public class SeeNoteFragment extends Fragment {
 
     private void generateNotes() {
 
-        for (int i = 0; i < userNote.size(); i++) {
-            //notes.add(new NoteModel(userName, userNote.get(i)));
+        for (int i = 0; i < userNotes.size(); i++) {
+            notes.add(userNotes.get(i));
         }
     }
 

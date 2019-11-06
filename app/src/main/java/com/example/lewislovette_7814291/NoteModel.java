@@ -1,5 +1,6 @@
 package com.example.lewislovette_7814291;
 
+import android.arch.lifecycle.MutableLiveData;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -7,11 +8,11 @@ import java.util.ArrayList;
 public class NoteModel {
     //Deals with notes
     DatabaseHandler db;
-
     String email;
-    ArrayList<String> note;
+    ArrayList<String> noteList = new ArrayList<>();
 
     private static final NoteModel oneInstance = new NoteModel();
+
 
     public static NoteModel getInstance() {
         return oneInstance;
@@ -28,21 +29,25 @@ public class NoteModel {
     public void setEmail(String email) {
         this.email = email;
 
-        //should then set all notes with 'getNote'
+        //Todo: then should pull all notes connected to this email into noteList
     }
 
     public ArrayList<String> getNotes() {
-        return note;
+
+        return noteList;
     }
 
     public void addNote(String note) {
-        this.note.add(note);
+        noteList.add(note);
+
+        //Todo: should only add to db and then the get note should get all notes
         //db.addNote(name, note); not needed for this branch
     }
 
     public void deleteNote(int noteToDelete) {
-        this.note.remove(noteToDelete);
+        noteList.remove(noteToDelete);
 
-        //should then delete # from database
+        //Todo: then delete # from database
     }
+
 }

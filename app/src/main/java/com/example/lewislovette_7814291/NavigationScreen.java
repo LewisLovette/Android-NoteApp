@@ -47,6 +47,9 @@ public class NavigationScreen extends AppCompatActivity {
                     return true;
 
                 case R.id.navigation_dashboard:
+                    fm.beginTransaction().remove(seeNoteFragment).commit();
+                    Fragment seeNoteFragment = new SeeNoteFragment();
+                    fm.beginTransaction().add(R.id.main_container, seeNoteFragment, "2").commit();
                     fm.beginTransaction().hide(active).show(seeNoteFragment).commit();
                     active = seeNoteFragment;
                     return true;

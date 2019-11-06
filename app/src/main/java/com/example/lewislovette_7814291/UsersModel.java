@@ -28,17 +28,21 @@ public class UsersModel {
     }
 
     public Bitmap getProfilePic() {
+        /*Todo: return profile pic from db
         byte[] blob = db.getPicture(email);    //retrieve profile pic for specific user
 
         ByteArrayInputStream imageStream = new ByteArrayInputStream(blob);
         Bitmap blobToBitmap = BitmapFactory.decodeStream(imageStream);
 
         return blobToBitmap;
+        */
+        return profilePic;
     }
 
     public void setProfilePic(Bitmap profilePic) {
         this.profilePic = profilePic;
 
+        /*Todo: fix error when saving image to database
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         profilePic.compress(Bitmap.CompressFormat.PNG, 100, out);
@@ -47,7 +51,7 @@ public class UsersModel {
         byte[] toBlob = out.toByteArray();
 
         db.setPicture(toBlob);
-
+        */
     }
 
     public String getEmail() {
