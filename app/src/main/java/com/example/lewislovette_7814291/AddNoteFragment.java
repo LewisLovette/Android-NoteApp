@@ -42,7 +42,7 @@ public class AddNoteFragment extends Fragment {
         saveNoteButton.setOnClickListener(new View.OnClickListener() {  //Sending the text to save to NoteModel when 'save' is clicked.
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Note Saved", Toast.LENGTH_LONG).show();
-                noteModel.setNote(noteToSave.getText().toString());
+                noteModel.addNote(noteToSave.getText().toString());
             }
         });
 

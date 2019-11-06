@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -27,6 +28,7 @@ public class ProfileFragment extends Fragment {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView imageView;
     UsersModel usersModel;
+    TextView userEmail;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -40,7 +42,12 @@ public class ProfileFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_profile, container, false);
         photoButton = view.findViewById(R.id.photoButton);
         imageView = view.findViewById(R.id.profilePicView);
-        usersModel = new UsersModel(view);
+        userEmail = view.findViewById(R.id.userEmail);
+
+        usersModel = UsersModel.getInstance();
+
+        userEmail.setText(usersModel.getEmail());
+
 
         if(usersModel.getProfilePic() == null) {
             Log.v("GETTING PROFILE PIC", "NOT FOUND");

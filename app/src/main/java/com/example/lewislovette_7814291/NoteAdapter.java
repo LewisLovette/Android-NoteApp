@@ -37,9 +37,8 @@ public class NoteAdapter extends ArrayAdapter<NoteModel> {
             }
 
             TextView textViewNote = (TextView) v.findViewById(R.id.textViewNote);
-            //TextView textViewNote = (TextView) v.findViewById(R.id.textViewNote);
 
-            textViewNote.setText(notes.get(position).getNote());
+            //Todo: get # of notes and display them
             //textViewNote.setText(notes.get(position).getNote());
 
         } catch (Exception e) {

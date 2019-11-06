@@ -115,7 +115,7 @@ public class SeeNoteFragment extends Fragment {
     private void generateNotes() {
 
         for (int i = 0; i < userNote.size(); i++) {
-            notes.add(new NoteModel(userName, userNote.get(i)));
+            //notes.add(new NoteModel(userName, userNote.get(i)));
         }
     }
 

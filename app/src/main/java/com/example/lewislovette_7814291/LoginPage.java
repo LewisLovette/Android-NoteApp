@@ -22,10 +22,14 @@ public class LoginPage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     //TextView statusText;
-    EditText email;
-    EditText password;
-    Button login;
-    Button back;
+    private EditText email;
+    private EditText password;
+    private Button login;
+    private Button back;
+
+    private NoteModel noteModel;
+    private UsersModel usersModel;
+
     String TAG =  "Firebase Auth";
 
 
@@ -41,6 +45,9 @@ public class LoginPage extends AppCompatActivity {
         login = findViewById(R.id.login);
         back = findViewById(R.id.back);
 
+        //Setting up models for the user
+        noteModel = NoteModel.getInstance();
+        usersModel = UsersModel.getInstance();
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -51,6 +58,7 @@ public class LoginPage extends AppCompatActivity {
 
             public void onClick(View v) {
                 signIn(email.getText().toString(), password.getText().toString());
+
             }
         });
 
@@ -75,7 +83,7 @@ public class LoginPage extends AppCompatActivity {
     }
 
 
-    private void signIn(String email, String password) {
+    private void signIn(final String email, String password) {
         Log.v(TAG, "signIn:" + email);
         if (!validateForm()) {
             return;
@@ -93,6 +101,15 @@ public class LoginPage extends AppCompatActivity {
                             Log.v(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+
+                            usersModel.setEmail(email);
+                            noteModel.setEmail(email);
+
+                            //If login is successful, go to navigation page
+                            Intent intent = new Intent(getBaseContext(), NavigationScreen.class);
+                            startActivity(intent);
+                            finish();
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());

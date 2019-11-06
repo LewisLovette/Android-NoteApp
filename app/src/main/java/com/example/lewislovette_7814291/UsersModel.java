@@ -18,9 +18,14 @@ public class UsersModel {
     private View view;
     DatabaseHandler db;
 
-    public UsersModel(View view){
-        this.view = view;
-        db = new DatabaseHandler(view.getContext());
+    private static final UsersModel oneInstance = new UsersModel();
+
+    public static UsersModel getInstance() {
+        return oneInstance;
+    }
+
+    private UsersModel() {
+
     }
 
     public Bitmap getProfilePic() {
@@ -60,6 +65,8 @@ public class UsersModel {
 
     public void setEmail(String email) {
         this.email = email;
+
+        //would then get data from db about this user (if it exists)
     }
 
     public String getPassword() {

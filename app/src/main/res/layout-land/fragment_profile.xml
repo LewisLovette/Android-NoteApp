@@ -20,7 +20,7 @@
             android:src="@mipmap/ic_aaron_machin" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/userEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"

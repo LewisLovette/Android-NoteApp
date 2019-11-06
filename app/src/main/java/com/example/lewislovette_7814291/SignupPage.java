@@ -21,13 +21,17 @@ import com.google.firebase.auth.FirebaseUser;
 public class SignupPage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    TextView statusText;
-    TextView detailText;
-    EditText email;
-    EditText password;
-    Button signup;
-    Button back;
-    String TAG = "Firebase Auth";
+    private TextView statusText;
+    private TextView detailText;
+    private EditText email;
+    private EditText password;
+    private Button signup;
+    private Button back;
+
+    private NoteModel noteModel;
+    private UsersModel usersModel;
+
+    private String TAG = "Firebase Auth";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,10 @@ public class SignupPage extends AppCompatActivity {
         signup = findViewById(R.id.signup);
         back = findViewById(R.id.back);
         mAuth = FirebaseAuth.getInstance();
+
+        //Setting up models for the user
+        noteModel = NoteModel.getInstance();
+        usersModel = UsersModel.getInstance();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
@@ -74,7 +82,7 @@ public class SignupPage extends AppCompatActivity {
     }
 
 
-    private void createAccount(String email, String password) {
+    private void createAccount(final String email, String password) {
         Log.v(TAG, "createAccount:" + email);
         if (!validateForm()) {
             return;
@@ -92,6 +100,15 @@ public class SignupPage extends AppCompatActivity {
                             Log.v(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+
+                            usersModel.setEmail(email);
+                            noteModel.setEmail(email);
+
+                            //If signup is successful, go to navigation page
+                            Intent intent = new Intent(getBaseContext(), NavigationScreen.class);
+                            startActivity(intent);
+                            finish();
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());

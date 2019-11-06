@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+
 public class MainActivity extends AppCompatActivity {
 
-    Button login;
-    Button signup;
+    public String currentUser;
+    private Button login;
+    private Button signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

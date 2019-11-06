@@ -72,8 +72,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", userNote.getName());
-        contentValues.put("notes", userNote.getNote());
+        //Todo: get notes from db
+        //contentValues.put("name", userNote.getName());
+        //contentValues.put("notes", userNote.getNote());
 
         long result = sqLiteDatabase.insert("UserNotes", null, contentValues);
 
