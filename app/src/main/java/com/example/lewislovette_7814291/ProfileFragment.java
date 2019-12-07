@@ -45,7 +45,7 @@ public class ProfileFragment extends Fragment {
         imageView = view.findViewById(R.id.profilePicView);
         userEmail = view.findViewById(R.id.userEmail);
 
-        usersModel = UsersModel.getInstance();
+        usersModel = new UsersModel(view);
 
         userEmail.setText(usersModel.getEmail());
         if(usersModel.getProfilePic() != null) {
@@ -103,6 +103,7 @@ public class ProfileFragment extends Fragment {
             imageView.setImageBitmap(imageBitmap);
 
             //sending to model to be saved
+            //Todo: Fix setting blob in db
             usersModel.setProfilePic(imageBitmap);
         }
     }

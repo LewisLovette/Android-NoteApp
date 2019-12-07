@@ -21,8 +21,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE userDetails (email, password, profilePic BLOB)");    //BLOB is for byte[] of picture
-        db.execSQL("CREATE TABLE userNotes (name, notes)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS userDetails (email, password, profilePic BLOB)");    //BLOB is for byte[] of picture
+        db.execSQL("CREATE TABLE IF NOT EXISTS userNotes (name, notes)");
     }
 
     @Override
@@ -40,9 +40,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         long result = sqLiteDatabase.insert("userDetails", null, contentValues);
 
         if (result > 0) {
-            Log.d("dbhelper", "inserted successfully");
+            Log.v("dbhelper", "inserted successfully");
         } else {
-            Log.d("dbhelper", "failed to insert");
+            Log.v("dbhelper", "failed to insert");
         }
         sqLiteDatabase.close();
     }
@@ -57,9 +57,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         long result = sqLiteDatabase.insert("UserNotes", null, contentValues);
 
         if (result > 0) {
-            Log.d("dbhelper", "inserted successfully");
+            Log.v("dbhelper", "inserted successfully");
         } else {
-            Log.d("dbhelper", "failed to insert");
+            Log.v("dbhelper", "failed to insert");
         }
         sqLiteDatabase.close();
     }
@@ -75,27 +75,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         long result = sqLiteDatabase.insert("UserNotes", null, contentValues);
 
         if (result > 0) {
-            Log.d("dbhelper", "inserted successfully");
+            Log.v("dbhelper", "inserted successfully");
         } else {
-            Log.d("dbhelper", "failed to insert");
+            Log.v("dbhelper", "failed to insert");
         }
         sqLiteDatabase.close();
     }
 
-    public void setPicture(byte[] blob){
+    public void setPicture(byte[] blob, String email, String password){
+        Log.v("dbhelper", "inserting");
+        Log.v("dbhelper", "email = " + email);
+        Log.v("dbhelper", "password = " + password);
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         ContentValues contentValues = new ContentValues();
 
         //get username and update the profile picture
 
         contentValues.put("profilePic", blob);
+        contentValues.put("email", email);
+        contentValues.put("password", password);
 
         long result = sqLiteDatabase.insert("userDetails", null, contentValues);
 
         if (result > 0) {
-            Log.d("dbhelper", "inserted successfully");
+            Log.v("dbhelper", "inserted successfully");
         } else {
-            Log.d("dbhelper", "failed to insert");
+            Log.v("dbhelper", "failed to insert");
         }
         sqLiteDatabase.close();
     }

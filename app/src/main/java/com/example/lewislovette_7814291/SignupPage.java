@@ -49,7 +49,9 @@ public class SignupPage extends AppCompatActivity {
 
         //Setting up models for the user
         noteModel = NoteModel.getInstance();
-        usersModel = UsersModel.getInstance();
+
+        View view  = findViewById(android.R.id.content);
+        usersModel = new UsersModel(view);
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);

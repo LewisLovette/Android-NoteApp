@@ -3,6 +3,7 @@ package com.example.lewislovette_7814291;
 import android.content.ContentValues;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.View;
 
 import java.io.ByteArrayInputStream;
@@ -17,41 +18,43 @@ public class UsersModel {
     private View view;
     DatabaseHandler db;
 
-    private static final UsersModel oneInstance = new UsersModel();
-
-    public static UsersModel getInstance() {
-        return oneInstance;
-    }
-
-    private UsersModel() {
-
+    public UsersModel(View view){
+        this.view = view;
+        db = new DatabaseHandler(view.getContext());
     }
 
     public Bitmap getProfilePic() {
-        /*Todo: return profile pic from db
+
+        //Todo: return profile pic from db
         byte[] blob = db.getPicture(email);    //retrieve profile pic for specific user
 
         ByteArrayInputStream imageStream = new ByteArrayInputStream(blob);
         Bitmap blobToBitmap = BitmapFactory.decodeStream(imageStream);
 
-        return blobToBitmap;
-        */
+        if(blobToBitmap != null){
+            Log.v("BITMAP", "!= null:");
+        }
+
+        profilePic = blobToBitmap;
+
         return profilePic;
     }
 
     public void setProfilePic(Bitmap profilePic) {
         this.profilePic = profilePic;
 
-        /*Todo: fix error when saving image to database
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        //Todo: fix error when saving image to database
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
 
-        profilePic.compress(Bitmap.CompressFormat.PNG, 100, out);
+        profilePic.compress(Bitmap.CompressFormat.PNG, 100, output);
 
         //converting to blob to pass to db;
-        byte[] toBlob = out.toByteArray();
+        byte[] toBlob = output.toByteArray();
 
-        db.setPicture(toBlob);
-        */
+        Log.v("user model", "email = " + this.email);
+        Log.v("user model", "password = " + this.password);
+
+        //db.setPicture(toBlob, this.email, this.password);
     }
 
     public String getEmail() {
