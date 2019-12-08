@@ -13,13 +13,13 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class NoteAdapter extends ArrayAdapter<NoteModel> {
+public class NoteAdapter extends ArrayAdapter<String> {
 
     private int resource;
-    private ArrayList<NoteModel> notes;
+    private ArrayList<String> notes;
     private Context context;
 
-    public NoteAdapter(Context context, int resource, ArrayList<NoteModel> notes) {
+    public NoteAdapter(Context context, int resource, ArrayList<String> notes) {
         super(context, resource, notes);
         this.resource = resource;
         this.notes = notes;
@@ -37,10 +37,9 @@ public class NoteAdapter extends ArrayAdapter<NoteModel> {
             }
 
             TextView textViewNote = (TextView) v.findViewById(R.id.textViewNote);
-            //TextView textViewNote = (TextView) v.findViewById(R.id.textViewNote);
 
-            textViewNote.setText(notes.get(position).getNote());
-            //textViewNote.setText(notes.get(position).getNote());
+            //Todo: get # of notes and display them
+            textViewNote.setText(notes.get(position));
 
         } catch (Exception e) {
             e.printStackTrace();

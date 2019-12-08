@@ -2,10 +2,12 @@ package com.example.lewislovette_7814291;
 
 
 import android.app.AlertDialog;
+import android.arch.lifecycle.Observer;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,14 +32,17 @@ public class SeeNoteFragment extends Fragment {
     private TextView nameTitle;
 
     private ListView listView;
-    String userName;    //as only one user is accessing notes
-    ArrayList<String> userNote;
+    private String userName;    //as only one user is accessing notes
+    private ArrayList<String> userNotes;
     public static int toDeletePosition;
+
+    private NoteModel noteModel;
+
+    private UsersModel usersModel;
 
     public static int[] deleteIcon = {
             R.drawable.ic_delete_black_24dp,
     };
-    private ArrayList<NoteModel> notes = new ArrayList<>();
 
 
     public SeeNoteFragment() {
@@ -53,15 +58,13 @@ public class SeeNoteFragment extends Fragment {
         this.view = inflater.inflate(R.layout.fragment_see_note, container, false);
         nameTitle = view.findViewById(R.id.whosNote);
 
+        noteModel = NoteModel.getInstance();
+        noteModel.setView(view);
 
-        //TO-DO pull from database
-        userName = "Lewis";
-        userNote = new ArrayList<>();
-        userNote.add("Just a list | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps | seeing if note wraps ");
-        userNote.add("Of Notes");
-        userNote.add("And such");
+        userName = noteModel.getEmail();
 
-        generateNotes();
+        userNotes = noteModel.getNotes();
+
 
         nameTitle.setText(userName + "'s Notes");
 
@@ -72,14 +75,17 @@ public class SeeNoteFragment extends Fragment {
         */
 
         listView = (ListView) view.findViewById(R.id.listViewComplex);
-        listView.setAdapter(new NoteAdapter(view.getContext(), R.layout.list_item, notes));
+
+        //Todo: instead of 'notes' send in arraylist of all notes
+        listView.setAdapter(new NoteAdapter(view.getContext(), R.layout.list_item, userNotes));
+
         listView.setOnItemClickListener(
 
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         toDeletePosition = position;
-                        Toast.makeText(view.getContext(), "You clicked the note: " + notes.get(position), Toast.LENGTH_LONG).show();
+                        Toast.makeText(view.getContext(), "You clicked the note: " + userNotes.get(position), Toast.LENGTH_LONG).show();
 
                         new AlertDialog.Builder(view.getContext())
                                 .setTitle("Delete entry")
@@ -92,7 +98,8 @@ public class SeeNoteFragment extends Fragment {
                                         // Continue with delete operation
                                         Log.v("WHAT IS WHICH: ", Integer.toString(which));
                                         Log.v("WHAT IS THE POSITION TO DELETE: ", Integer.toString(toDeletePosition));
-                                        notes.remove(toDeletePosition);
+                                        noteModel.deleteNote(userNotes.get(toDeletePosition));
+                                        userNotes.remove(toDeletePosition);
                                         listView.invalidateViews();
                                     }
                                 })
@@ -106,17 +113,6 @@ public class SeeNoteFragment extends Fragment {
                 }
         );
         return view;
-    }
-
-    private void deleteNote(View view){
-
-    }
-
-    private void generateNotes() {
-
-        for (int i = 0; i < userNote.size(); i++) {
-            notes.add(new NoteModel(userName, userNote.get(i)));
-        }
     }
 
 }
