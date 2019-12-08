@@ -191,4 +191,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * Deletes a users specific note from the database
+     * @param email - current users email
+     * @param note - users note to delete
+     */
+    public void deleteNote(String email, String note){
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        Log.v("dbhelper", "deleting note: " + note);
+
+
+        //deleting from db
+        sqLiteDatabase.delete("userNotes","email = '" + email + "' and note = '" + note + "'",
+                null);
+
+        Log.v("dbhelper", "note successfully deleted");
+
+
+    }
+
 }

@@ -44,8 +44,6 @@ public class SeeNoteFragment extends Fragment {
             R.drawable.ic_delete_black_24dp,
     };
 
-    private ArrayList<String> notes = new ArrayList<>();
-
 
     public SeeNoteFragment() {
 
@@ -87,7 +85,7 @@ public class SeeNoteFragment extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         toDeletePosition = position;
-                        Toast.makeText(view.getContext(), "You clicked the note: " + notes.get(position), Toast.LENGTH_LONG).show();
+                        Toast.makeText(view.getContext(), "You clicked the note: " + userNotes.get(position), Toast.LENGTH_LONG).show();
 
                         new AlertDialog.Builder(view.getContext())
                                 .setTitle("Delete entry")
@@ -100,7 +98,8 @@ public class SeeNoteFragment extends Fragment {
                                         // Continue with delete operation
                                         Log.v("WHAT IS WHICH: ", Integer.toString(which));
                                         Log.v("WHAT IS THE POSITION TO DELETE: ", Integer.toString(toDeletePosition));
-                                        notes.remove(toDeletePosition);
+                                        noteModel.deleteNote(userNotes.get(toDeletePosition));
+                                        userNotes.remove(toDeletePosition);
                                         listView.invalidateViews();
                                     }
                                 })
@@ -114,17 +113,6 @@ public class SeeNoteFragment extends Fragment {
                 }
         );
         return view;
-    }
-
-    private void deleteNote(View view){
-
-    }
-
-    private void generateNotes() {
-
-        for (int i = 0; i < userNotes.size(); i++) {
-            notes.add(userNotes.get(i));
-        }
     }
 
 }

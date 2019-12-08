@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
 public class NoteModel {
     //Deals with notes
-    String email;
-    ArrayList<String> noteList = new ArrayList<>();
+    private String email;
+    private ArrayList<String> noteList = new ArrayList<>();
 
     private View view;
-    DatabaseHandler db;
+    private DatabaseHandler db;
 
     private static final NoteModel oneInstance = new NoteModel();
 
@@ -81,10 +81,8 @@ public class NoteModel {
      * Deletes a selected note
      * @param noteToDelete - position of the note to be deleted.
      */
-    public void deleteNote(int noteToDelete) {
-        //noteList.remove(noteToDelete);
-
-        //Todo: then delete # from database
+    public void deleteNote(String noteToDelete) {
+        db.deleteNote(this.email, noteToDelete);
     }
 
 }
