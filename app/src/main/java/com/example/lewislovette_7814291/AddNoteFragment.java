@@ -51,7 +51,6 @@ public class AddNoteFragment extends Fragment {
         });
 
         return view;
-
     }
 
 
