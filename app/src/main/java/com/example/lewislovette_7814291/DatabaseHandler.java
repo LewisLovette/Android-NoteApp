@@ -204,7 +204,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
         //deleting from db
-        sqLiteDatabase.delete("userNotes","email = '" + email + "' and note = '" + note + "'",
+        sqLiteDatabase.delete("userNotes","email = '" + email + "' and notes = '" + note + "'",
                 null);
 
         Log.v("dbhelper", "note successfully deleted");
