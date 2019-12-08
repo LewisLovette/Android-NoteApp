@@ -101,21 +101,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public void setPicture(byte[] blob, String email){
-        Log.v("dbhelper", "inserting");
+        Log.v("dbhelper", "inserting new picture");
         Log.v("dbhelper", "email = " + email);
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         ContentValues contentValues = new ContentValues();
 
+
         //updating a users profile picture
         contentValues.put("profilePic", blob);
-        int result = sqLiteDatabase.update("userDetails", contentValues,
-                "where email = " + email, null);
+        sqLiteDatabase.update("userDetails", contentValues,
+                "email = '" + email + "'", null);
 
-        if (result > 0) {
-            Log.v("dbhelper", "inserted successfully");
-        } else {
-            Log.v("dbhelper", "failed to insert");
-        }
+
+        //String query = "update userDetails set profilePic = '" + blob + "' where email = ?";
+        //sqLiteDatabase.rawQuery(query, new String[]{email});
+
+        Log.v("dbhelper", "picture succesffuly updated for user " + email );
+
+
         sqLiteDatabase.close();
     }
 
