@@ -7,9 +7,11 @@ import java.util.ArrayList;
 
 public class NoteModel {
     //Deals with notes
-    DatabaseHandler db;
     String email;
     ArrayList<String> noteList = new ArrayList<>();
+
+    private View view;
+    DatabaseHandler db;
 
     private static final NoteModel oneInstance = new NoteModel();
 
@@ -20,6 +22,11 @@ public class NoteModel {
 
     private NoteModel() {
 
+    }
+
+    public void setView(View view){
+        this.view = view;
+        db = new DatabaseHandler(view.getContext());
     }
 
     public String getEmail() {

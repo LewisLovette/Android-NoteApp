@@ -61,12 +61,12 @@ public class SeeNoteFragment extends Fragment {
         nameTitle = view.findViewById(R.id.whosNote);
 
         noteModel = NoteModel.getInstance();
+        noteModel.setView(view);
 
         userName = noteModel.getEmail();
 
         userNotes = noteModel.getNotes();
 
-        generateNotes();
 
         nameTitle.setText(userName + "'s Notes");
 

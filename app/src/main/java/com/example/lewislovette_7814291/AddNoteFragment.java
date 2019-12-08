@@ -32,7 +32,9 @@ public class AddNoteFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_add_note, container, false);
+
         noteModel = NoteModel.getInstance();
+        noteModel.setView(view);
 
         //Setting buttons to view.
         saveNoteButton = (Button) view.findViewById(R.id.saveButton);
