@@ -45,6 +45,17 @@ public class UsersModel {
     }
 
     /**
+     * Checks if the user has a profile picture
+     * @return True if the user has a picture
+     */
+    public boolean hasPicture(){
+
+        boolean temp = db.hasPicture(this.email);
+
+        return temp;
+    }
+
+    /**
      * Gets the profile picture of the current user as Bitmap.
      * @return profilePic - the profile pic as a Bitmap
      */
@@ -52,6 +63,7 @@ public class UsersModel {
 
         //Todo: return profile pic from db
         byte[] blob = db.getPicture(email);    //retrieve profile pic for specific user
+
 
         ByteArrayInputStream imageStream = new ByteArrayInputStream(blob);
         Bitmap blobToBitmap = BitmapFactory.decodeStream(imageStream);

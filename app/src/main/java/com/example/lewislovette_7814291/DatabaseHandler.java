@@ -14,6 +14,8 @@ import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.N
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
+    Cursor cursor;
+
 
     public DatabaseHandler(Context context){
         super(context, "NoteAppDatabase", null, 1);
@@ -40,7 +42,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        Cursor cursor;
         String query = "select * from userDetails where email = ?";
         cursor = sqLiteDatabase.rawQuery(query, new String[] {email});
 
@@ -122,21 +123,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
-    public byte[] getPicture(String userEmail){
+    public byte[] getPicture(String email){
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         byte[] blob;
-        Cursor cursor;
-        userEmail = NULL;
 
-        String sql = "SELECT profilePic FROM userDetails";
-
-
-        //selection args example:  https://stackoverflow.com/questions/10598137/rawqueryquery-selectionargs
-        cursor = sqLiteDatabase.rawQuery(sql, new String[] {});
-
-        if(cursor.getCount() <= 0){
-            Log.v("Cursor", "has no data");
-        }
+        String query = "select profilePic from userDetails where email = ?";
+        cursor = sqLiteDatabase.rawQuery(query, new String[] {email});
 
         cursor.moveToFirst();
         blob = cursor.getBlob(0);
@@ -144,4 +136,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return blob;
     }
+
+    public boolean hasPicture(String email){
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+
+        String query = "select profilePic from userDetails where email = ?";
+        cursor = sqLiteDatabase.rawQuery(query, new String[] {email});
+
+        cursor.moveToFirst();
+        if(cursor.getBlob(0) != null){
+            Log.v("dbhelper", "blob = true");
+            return true;
+        }
+
+        Log.v("dbhelper", "cursor = false");
+        return false;
+
+
+    }
+
 }
