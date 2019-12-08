@@ -20,19 +20,34 @@ public class UsersModel {
 
     private static final UsersModel oneInstance = new UsersModel();
 
+    /**
+     * This is used to get a single instance of the class - implements the Singleton Pattern.
+     * @return single instance of the class
+     */
     public static UsersModel getInstance() {
         return oneInstance;
     }
 
+    /**
+     * Class constructor, only used by Singleton when first instantiating class.
+     */
     public UsersModel(){
 
     }
 
+    /**
+     * Sets the private view variable within this class as well as instatiating the DatabaseHandler.
+     * @param view - only param for setView.
+     */
     public void setView(View view){
         this.view = view;
         db = new DatabaseHandler(view.getContext());
     }
 
+    /**
+     * Gets the profile picture of the current user as Bitmap.
+     * @return profilePic - the profile pic as a Bitmap
+     */
     public Bitmap getProfilePic() {
 
         //Todo: return profile pic from db
@@ -50,6 +65,10 @@ public class UsersModel {
         return profilePic;
     }
 
+    /**
+     * Stores the users profile picture
+     * @param profilePic - a Bitmap of the users profile pic
+     */
     public void setProfilePic(Bitmap profilePic) {
         this.profilePic = profilePic;
 
@@ -67,20 +86,36 @@ public class UsersModel {
         //db.setPicture(toBlob, this.email, this.password);
     }
 
+    /**
+     * Gets the email stored in the instance of this class.
+     * @return String email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Sets the email within the instance of this class to the current user.
+     * @param email - the email of the user that is currently signed in.
+     */
     public void setEmail(String email) {
         this.email = email;
 
         //would then get data from db about this user (if it exists)
     }
 
+    /**
+     * Gets the password stored in the instance of this class.
+     * @return String password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Sets the password within the instance of this class to the current user.
+     * @param password - the email of the user that is currently signed in.
+     */
     public void setPassword(String password) {
         this.password = password;
     }
