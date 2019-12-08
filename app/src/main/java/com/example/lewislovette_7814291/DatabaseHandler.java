@@ -101,6 +101,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
+    /**
+     * Sets the users profile picture when they take one
+     * @param blob
+     * @param email - the current users email
+     */
     public void setPicture(byte[] blob, String email){
         Log.v("dbhelper", "inserting new picture");
         Log.v("dbhelper", "email = " + email);
@@ -123,6 +128,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
+    /**
+     * Gets the users profile picture
+     * @param email - the current users email
+     * @return blob of the users picture
+     */
     public byte[] getPicture(String email){
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         byte[] blob;
@@ -137,6 +147,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return blob;
     }
 
+    /**
+     * Checks if the user has taken a picture of their profile
+     * @param email - the current users email
+     * @return true or false for if user has a picture
+     */
     public boolean hasPicture(String email){
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
 
