@@ -47,9 +47,10 @@ public class LoginPage extends AppCompatActivity {
 
         //Setting up models for the user
         noteModel = NoteModel.getInstance();
-        View view  = findViewById(android.R.id.content);
 
-        usersModel = new UsersModel(view);
+        usersModel = UsersModel.getInstance();
+        View view  = findViewById(android.R.id.content);
+        usersModel.setView(view);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -91,6 +92,10 @@ public class LoginPage extends AppCompatActivity {
             return;
         }
 
+        Log.v("user model", "email = " + email);
+        Log.v("user model", "password = " + password);
+        usersModel.setEmail(email);
+        noteModel.setEmail(email);
         //showProgressDialog();
 
         // [START sign_in_with_email]
@@ -104,8 +109,7 @@ public class LoginPage extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
 
-                            usersModel.setEmail(email);
-                            noteModel.setEmail(email);
+
 
                             //If login is successful, go to navigation page
                             Intent intent = new Intent(getBaseContext(), NavigationScreen.class);

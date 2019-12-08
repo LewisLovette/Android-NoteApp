@@ -18,7 +18,17 @@ public class UsersModel {
     private View view;
     DatabaseHandler db;
 
-    public UsersModel(View view){
+    private static final UsersModel oneInstance = new UsersModel();
+
+    public static UsersModel getInstance() {
+        return oneInstance;
+    }
+
+    public UsersModel(){
+
+    }
+
+    public void setView(View view){
         this.view = view;
         db = new DatabaseHandler(view.getContext());
     }

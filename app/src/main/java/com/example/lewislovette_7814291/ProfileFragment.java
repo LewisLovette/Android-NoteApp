@@ -45,7 +45,8 @@ public class ProfileFragment extends Fragment {
         imageView = view.findViewById(R.id.profilePicView);
         userEmail = view.findViewById(R.id.userEmail);
 
-        usersModel = new UsersModel(view);
+        usersModel = UsersModel.getInstance();
+        usersModel.setView(view);
 
         userEmail.setText(usersModel.getEmail());
         if(usersModel.getProfilePic() != null) {
