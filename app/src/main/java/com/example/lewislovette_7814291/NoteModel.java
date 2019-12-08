@@ -63,6 +63,8 @@ public class NoteModel {
      */
     public ArrayList<String> getNotes() {
 
+        noteList = db.getNotes(this.email);
+
         return noteList;
     }
 
@@ -71,9 +73,7 @@ public class NoteModel {
      * @param note - new note created by the user
      */
     public void addNote(String note) {
-        noteList.add(note);
 
-        //Todo: should only add to db and then the get note should get all notes
         db.addNote(this.email, note);
     }
 
@@ -82,7 +82,7 @@ public class NoteModel {
      * @param noteToDelete - position of the note to be deleted.
      */
     public void deleteNote(int noteToDelete) {
-        noteList.remove(noteToDelete);
+        //noteList.remove(noteToDelete);
 
         //Todo: then delete # from database
     }

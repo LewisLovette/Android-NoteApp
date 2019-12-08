@@ -17,17 +17,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     Cursor cursor;
 
-
+    /**
+     * DatabaseHandler constructor
+     * @param context - of the current activity
+     */
     public DatabaseHandler(Context context){
         super(context, "NoteAppDatabase", null, 1);
     }
 
+    /**
+     *  Creates tables 'userDetails, userNotes' if they do not exist
+     * @param db - takes in the database
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS userDetails (email, password, profilePic BLOB)");    //BLOB is for byte[] of picture
-        db.execSQL("CREATE TABLE IF NOT EXISTS userNotes (name, notes)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS userNotes (email, notes)");
     }
 
+    /**
+     * onUpgrade
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
@@ -35,8 +48,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     /**
      * Adds a user to the database if non existent.
-     * @param email
-     * @param password
+     * @param email - current users email
+     * @param password  - current users password
      * @return empty if user exists
      */
     public void addUser(String email, String password) {
@@ -60,9 +73,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         long result = sqLiteDatabase.insert("userDetails", null, contentValues);
 
         if (result > 0) {
-            Log.v("dbhelper", "inserted successfully");
+            Log.v("dbhelper", "user inserted successfully");
         } else {
-            Log.v("dbhelper", "failed to insert");
+            Log.v("dbhelper", "failed to insert user");
         }
         sqLiteDatabase.close();
     }
@@ -76,15 +89,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put("name", email);
+        contentValues.put("email", email);
         contentValues.put("notes", note);
 
         long result = sqLiteDatabase.insert("userNotes", null, contentValues);
 
         if (result > 0) {
-            Log.v("dbhelper", "inserted successfully");
+            Log.v("dbhelper", "note inserted successfully");
         } else {
-            Log.v("dbhelper", "failed to insert");
+            Log.v("dbhelper", "failed to insert note");
         }
         sqLiteDatabase.close();
     }
@@ -105,7 +118,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cursor.moveToFirst();
 
         while(!cursor.isAfterLast()) {
-            notes.add(cursor.getString(cursor.getColumnIndex("name")));
+            notes.add(cursor.getString(cursor.getColumnIndex("notes")));
             cursor.moveToNext();
         }
         sqLiteDatabase.close();
@@ -131,7 +144,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "email = '" + email + "'", null);
 
 
-        Log.v("dbhelper", "picture succesffuly updated for user " + email );
+        Log.v("dbhelper", "picture successfully updated for user " + email );
 
         sqLiteDatabase.close();
     }

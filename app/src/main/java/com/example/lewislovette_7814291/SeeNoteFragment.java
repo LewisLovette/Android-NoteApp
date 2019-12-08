@@ -79,7 +79,7 @@ public class SeeNoteFragment extends Fragment {
         listView = (ListView) view.findViewById(R.id.listViewComplex);
 
         //Todo: instead of 'notes' send in arraylist of all notes
-        listView.setAdapter(new NoteAdapter(view.getContext(), R.layout.list_item, notes));
+        listView.setAdapter(new NoteAdapter(view.getContext(), R.layout.list_item, userNotes));
 
         listView.setOnItemClickListener(
 

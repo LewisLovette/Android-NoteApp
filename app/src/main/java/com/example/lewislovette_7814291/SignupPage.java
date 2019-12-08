@@ -48,10 +48,11 @@ public class SignupPage extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         //Setting up models for the user
-        noteModel = NoteModel.getInstance();
-
-        usersModel = UsersModel.getInstance();
         View view  = findViewById(android.R.id.content);
+
+        noteModel = NoteModel.getInstance();
+        noteModel.setView(view);
+        usersModel = UsersModel.getInstance();
         usersModel.setView(view);
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -91,7 +92,10 @@ public class SignupPage extends AppCompatActivity {
             return;
         }
 
-        //showProgressDialog();
+        Log.v("user model", "email = " + email);
+        Log.v("user model", "password = " + password);
+        usersModel.addUser(email, password);
+        noteModel.setEmail(email);
 
         // [START create_user_with_email]
         mAuth.createUserWithEmailAndPassword(email, password)
