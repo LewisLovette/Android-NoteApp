@@ -80,10 +80,17 @@ public class UsersModel {
         //converting to blob to pass to db;
         byte[] toBlob = output.toByteArray();
 
-        Log.v("user model", "email = " + this.email);
-        Log.v("user model", "password = " + this.password);
+        Log.v("userM", "email = " + this.email);
+        Log.v("userM", "password = " + this.password);
 
-        //db.setPicture(toBlob, this.email, this.password);
+        db.setPicture(toBlob, this.email);
+    }
+
+    public void addUser(String email, String password){
+        setEmail(email);
+        setPassword(password);
+
+        db.addUser(email, password);
     }
 
     /**

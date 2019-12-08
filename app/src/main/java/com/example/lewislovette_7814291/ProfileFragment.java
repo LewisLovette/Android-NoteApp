@@ -49,9 +49,10 @@ public class ProfileFragment extends Fragment {
         usersModel.setView(view);
 
         userEmail.setText(usersModel.getEmail());
-        if(usersModel.getProfilePic() != null) {
-            imageView.setImageBitmap(usersModel.getProfilePic());
-        }
+
+        //if(usersModel.getProfilePic() != null) {
+        //    imageView.setImageBitmap(usersModel.getProfilePic());
+        //}
         //Todo: set profile pic for specific user (if it exists otherwise set default)
         /*
         //setting profile pic if available

@@ -30,12 +30,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-    public void addUser(UsersModel userDetails) {
+    /**
+     * Adds a user to the database if non existent.
+     * @param email
+     * @param password
+     * @return empty if user exists
+     */
+    public void addUser(String email, String password) {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-
         ContentValues contentValues = new ContentValues();
-        contentValues.put("email", userDetails.getEmail());
-        contentValues.put("password", userDetails.getPassword());
+
+        Cursor cursor;
+        String query = "select * from userDetails where email = ?";
+        cursor = sqLiteDatabase.rawQuery(query, new String[] {email});
+
+        if(cursor.moveToFirst()) {
+            Log.v("dbhelper", "user exists, cursor = " + cursor.getString(cursor.getColumnIndex("email")));
+            return;
+        }
+
+
+        Log.v("dbhelper", "adding - result = " + cursor.getCount());
+
+        contentValues.put("email", email);
+        contentValues.put("password", password);
 
         long result = sqLiteDatabase.insert("userDetails", null, contentValues);
 
@@ -82,20 +100,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
-    public void setPicture(byte[] blob, String email, String password){
+    public void setPicture(byte[] blob, String email){
         Log.v("dbhelper", "inserting");
         Log.v("dbhelper", "email = " + email);
-        Log.v("dbhelper", "password = " + password);
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        //get username and update the profile picture
-
+        //updating a users profile picture
         contentValues.put("profilePic", blob);
-        contentValues.put("email", email);
-        contentValues.put("password", password);
-
-        long result = sqLiteDatabase.insert("userDetails", null, contentValues);
+        int result = sqLiteDatabase.update("userDetails", contentValues,
+                "where email = " + email, null);
 
         if (result > 0) {
             Log.v("dbhelper", "inserted successfully");

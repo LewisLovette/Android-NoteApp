@@ -95,7 +95,7 @@ public class LoginPage extends AppCompatActivity {
 
         Log.v("user model", "email = " + email);
         Log.v("user model", "password = " + password);
-        usersModel.setEmail(email);
+        usersModel.addUser(email, password);
         noteModel.setEmail(email);
         //showProgressDialog();
 
