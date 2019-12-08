@@ -44,7 +44,9 @@ public class AddNoteFragment extends Fragment {
         //Binding events and sending data to model layer
         saveNoteButton.setOnClickListener(new View.OnClickListener() {  //Sending the text to save to NoteModel when 'save' is clicked.
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Note Saved", Toast.LENGTH_LONG).show();noteModel.addNote(noteToSave.getText().toString());
+                Toast.makeText(getContext(), "Note Saved", Toast.LENGTH_LONG).show();
+                noteModel.addNote(noteToSave.getText().toString());
+
             }
         });
 

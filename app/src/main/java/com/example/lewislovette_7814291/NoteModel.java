@@ -74,7 +74,7 @@ public class NoteModel {
         noteList.add(note);
 
         //Todo: should only add to db and then the get note should get all notes
-        //db.addNote(name, note); not needed for this branch
+        db.addNote(this.email, note);
     }
 
     /**

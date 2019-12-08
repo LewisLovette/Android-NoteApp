@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
 import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
 
@@ -66,14 +67,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
-    public void addNote(String name, String note) {
+    /**
+     * Adds a note to the database associated with the current user
+     * @param email - email of the current user
+     * @param note - the note the user wants to add
+     */
+    public void addNote(String email, String note) {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", name);
+
+        contentValues.put("name", email);
         contentValues.put("notes", note);
 
-        long result = sqLiteDatabase.insert("UserNotes", null, contentValues);
+        long result = sqLiteDatabase.insert("userNotes", null, contentValues);
 
         if (result > 0) {
             Log.v("dbhelper", "inserted successfully");
@@ -83,22 +89,28 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
-    public void getNotes(NoteModel userNote) {
+    /**
+     * Gets all of a users notes into an ArrayList of Strings
+     * @param email - the current users email
+     * @return ArrayList<String> containing all of the users notes
+     */
+    public ArrayList<String> getNotes(String email) {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-
         ContentValues contentValues = new ContentValues();
-        //Todo: get notes from db
-        //contentValues.put("name", userNote.getName());
-        //contentValues.put("notes", userNote.getNote());
+        ArrayList<String> notes = new ArrayList<String>();
 
-        long result = sqLiteDatabase.insert("UserNotes", null, contentValues);
+        String query = "select * from userNotes where email = ?";
+        cursor = sqLiteDatabase.rawQuery(query, new String[] {email});
 
-        if (result > 0) {
-            Log.v("dbhelper", "inserted successfully");
-        } else {
-            Log.v("dbhelper", "failed to insert");
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()) {
+            notes.add(cursor.getString(cursor.getColumnIndex("name")));
+            cursor.moveToNext();
         }
         sqLiteDatabase.close();
+
+        return notes;
     }
 
     /**
@@ -119,11 +131,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "email = '" + email + "'", null);
 
 
-        //String query = "update userDetails set profilePic = '" + blob + "' where email = ?";
-        //sqLiteDatabase.rawQuery(query, new String[]{email});
-
         Log.v("dbhelper", "picture succesffuly updated for user " + email );
-
 
         sqLiteDatabase.close();
     }
