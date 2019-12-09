@@ -9,6 +9,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +50,16 @@ public class SeeNoteFragment extends Fragment {
 
         //testing atm - though you would pass name to the DB and it would retrieve all the notes for that person
 
+    }
+
+    /**
+     * Removes the top bar from view
+     * @param savedInstanceState
+     */
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
     }
 
     @Override

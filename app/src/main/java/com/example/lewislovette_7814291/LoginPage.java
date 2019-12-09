@@ -116,11 +116,13 @@ public class LoginPage extends AppCompatActivity {
                             finish();
 
                         } else {
+                            /*
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(getBaseContext(), "Authentication failed. Trying locally",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
+                            */
 
                             if(usersModel.exists()) {
                                 Intent intent = new Intent(getBaseContext(), NavigationScreen.class);
@@ -129,7 +131,7 @@ public class LoginPage extends AppCompatActivity {
                             }
                             else{
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                Toast.makeText(getBaseContext(), "Local Login Failed",
+                                Toast.makeText(getBaseContext(), "Firebase & Local Login Failed",
                                         Toast.LENGTH_SHORT).show();
                                 updateUI(null);
                             }
