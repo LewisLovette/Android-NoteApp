@@ -41,7 +41,7 @@
                 android:inputType="textEmailAddress"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.617"
+                app:layout_constraintHorizontal_bias="0.46"
                 app:layout_constraintStart_toEndOf="@+id/emailText"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
@@ -78,8 +78,10 @@
                 android:inputType="textPassword"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.424"
                 app:layout_constraintStart_toEndOf="@+id/passwordText"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 tools:ignore="Autofill" />
 
         </android.support.constraint.ConstraintLayout>
