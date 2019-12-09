@@ -41,17 +41,13 @@
                 android:inputType="textEmailAddress"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.617"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/emailText"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
                 tools:ignore="Autofill" />
 
         </android.support.constraint.ConstraintLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/stdSpacing" />
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -67,7 +63,8 @@
                 android:text="@string/password"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.8" />
 
             <EditText
                 android:id="@+id/passwordInput"
@@ -78,15 +75,13 @@
                 android:inputType="textPassword"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/passwordText"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 tools:ignore="Autofill" />
 
         </android.support.constraint.ConstraintLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/stdSpacing" />
 
         <LinearLayout
             android:layout_width="match_parent"

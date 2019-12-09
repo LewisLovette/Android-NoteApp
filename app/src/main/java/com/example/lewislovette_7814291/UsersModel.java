@@ -105,6 +105,11 @@ public class UsersModel {
         db.addUser(email, password);
     }
 
+    public boolean exists(){
+
+        return true;
+    }
+
     /**
      * Gets the email stored in the instance of this class.
      * @return String email
