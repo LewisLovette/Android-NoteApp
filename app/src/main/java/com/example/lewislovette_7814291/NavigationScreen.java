@@ -19,7 +19,10 @@ public class NavigationScreen extends AppCompatActivity {
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = addNoteFragment;
 
-
+    /**
+     * Sets up fragments to be used within the navigation bar
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +37,9 @@ public class NavigationScreen extends AppCompatActivity {
 
     }
 
-
+    /**
+     * Switches between fragments depending on navigation pressed. Defaults to Add Note Fragment
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 

@@ -25,6 +25,8 @@ public class SignupPage extends AppCompatActivity {
     private TextView detailText;
     private EditText email;
     private EditText password;
+    public String emailUser;
+    public String passwordUser;
     private Button signup;
     private Button back;
 
@@ -33,6 +35,10 @@ public class SignupPage extends AppCompatActivity {
 
     private String TAG = "Firebase Auth";
 
+    /**
+     * Handles signup form and back button
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +80,9 @@ public class SignupPage extends AppCompatActivity {
 
     }
 
+    /**
+     * Handles connection to firebase
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -82,7 +91,11 @@ public class SignupPage extends AppCompatActivity {
         updateUI(currentUser);
     }
 
-
+    /**
+     * Creates an account locally and with firebase.
+     * @param email
+     * @param password
+     */
     private void createAccount(final String email, String password) {
         Log.v(TAG, "createAccount:" + email);
         if (!validateForm()) {
@@ -91,8 +104,11 @@ public class SignupPage extends AppCompatActivity {
 
         Log.v("user model", "email = " + email);
         Log.v("user model", "password = " + password);
-        usersModel.addUser(email, password);
+        usersModel.setEmail(email);
+        usersModel.setPassword(password);
         noteModel.setEmail(email);
+        emailUser = email;
+        passwordUser = password;
 
         // [START create_user_with_email]
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -105,8 +121,7 @@ public class SignupPage extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
 
-                            usersModel.setEmail(email);
-                            noteModel.setEmail(email);
+                            usersModel.addUser(emailUser, passwordUser);
 
                             //If signup is successful, go to navigation page
                             Intent intent = new Intent(getBaseContext(), NavigationScreen.class);
@@ -114,11 +129,20 @@ public class SignupPage extends AppCompatActivity {
                             finish();
 
                         } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(getBaseContext(), "Account already associated with this Email",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+                            if(usersModel.exists()) {
+                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(getBaseContext(), "User Already exists",
+                                        Toast.LENGTH_SHORT).show();
+                                updateUI(null);
+
+                            }
+                            else{
+                                usersModel.addUser(emailUser, passwordUser);
+                                Log.v(TAG, "Firebase connection failed. Local user added");
+                                Intent intent = new Intent(getBaseContext(), NavigationScreen.class);
+                                startActivity(intent);
+                                finish();
+                            }
                         }
 
                         // [START_EXCLUDE]
@@ -129,7 +153,10 @@ public class SignupPage extends AppCompatActivity {
         // [END create_user_with_email]
     }
 
-
+    /**
+     * Information on if user successfully signed up
+     * @param user
+     */
     private void updateUI(FirebaseUser user) {
 
         if (user != null) {
@@ -140,6 +167,10 @@ public class SignupPage extends AppCompatActivity {
         }
     }
 
+    /**
+     * Valides email and password information
+     * @return boolean valid
+     */
     private boolean validateForm() {
         boolean valid = true;
 

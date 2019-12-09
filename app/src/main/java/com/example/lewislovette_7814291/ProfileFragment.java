@@ -74,17 +74,6 @@ public class ProfileFragment extends Fragment {
         if(usersModel.hasPicture()) {
             imageView.setImageBitmap(usersModel.getProfilePic());
         }
-        //Todo: set profile pic for specific user (if it exists otherwise set default)
-        /*
-        //setting profile pic if available
-        if(usersModel.getProfilePic() == null) {
-            Log.v("GETTING PROFILE PIC", "NOT FOUND");
-        }
-        else {
-            imageView.setImageBitmap(usersModel.getProfilePic());
-        }
-        */
-
 
         imageView.setOnClickListener(new View.OnClickListener() {
 

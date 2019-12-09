@@ -39,17 +39,11 @@ public class SeeNoteFragment extends Fragment {
 
     private NoteModel noteModel;
 
-    private UsersModel usersModel;
-
-    public static int[] deleteIcon = {
-            R.drawable.ic_delete_black_24dp,
-    };
-
-
+    /**
+     * Constructor for See Note Fragment
+     */
     public SeeNoteFragment() {
-
-        //testing atm - though you would pass name to the DB and it would retrieve all the notes for that person
-
+        //constructor
     }
 
     /**
@@ -62,6 +56,13 @@ public class SeeNoteFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
     }
 
+    /**
+     * Sets up users note with the note adapter and handles deleting notes.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -125,5 +126,6 @@ public class SeeNoteFragment extends Fragment {
         );
         return view;
     }
+
 
 }

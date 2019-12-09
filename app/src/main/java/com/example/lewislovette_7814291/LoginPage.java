@@ -34,7 +34,10 @@ public class LoginPage extends AppCompatActivity {
     public String passwordUser;
     String TAG =  "Firebase Auth";
 
-
+    /**
+     * Handles login and back buttons, sets variables.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +83,9 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
+    /**
+     * Sets up firebase connection
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -88,7 +94,11 @@ public class LoginPage extends AppCompatActivity {
         updateUI(currentUser);
     }
 
-
+    /**
+     *  Handles sign in with Firebase and Locally if no internet.
+     * @param email - current users email
+     * @param password  - current users password
+     */
     private void signIn(final String email, String password) {
         Log.v(TAG, "signIn:" + email);
         if (!validateForm()) {
@@ -157,7 +167,10 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
-
+    /**
+     * Information on user sign in
+     * @param user
+     */
     private void updateUI(FirebaseUser user) {
 
         if (user != null) {
@@ -168,6 +181,10 @@ public class LoginPage extends AppCompatActivity {
         }
     }
 
+    /**
+     * Validates email and password information
+     * @return
+     */
     private boolean validateForm() {
         boolean valid = true;
 
