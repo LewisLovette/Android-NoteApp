@@ -98,6 +98,10 @@ public class LoginPage extends AppCompatActivity {
         this.emailUser = email;
         this.passwordUser = password;
 
+        usersModel.setEmail(email);
+        usersModel.setPassword(password);
+        noteModel.setEmail((email));
+
         Log.v("user model", "email = " + email);
         Log.v("user model", "password = " + password);
 
@@ -115,7 +119,6 @@ public class LoginPage extends AppCompatActivity {
                             updateUI(user);
 
                             usersModel.addUser(emailUser, passwordUser);
-                            noteModel.setEmail(emailUser);
 
                             //If login is successful, go to navigation page
                             Intent intent = new Intent(getBaseContext(), NavigationScreen.class);

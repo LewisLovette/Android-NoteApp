@@ -87,10 +87,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * @return empty if user exists
      */
     public boolean userExists(String email, String password) {
+        email = "lewisl@gmail.com";
+        password = "123abc";
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
 
-        cursor = sqLiteDatabase.query("userDetails", new String[]{"email", "password"},
-                "email = "+email+" AND password = "+password, null, null, null, null);
+        String query = "select * from userDetails where email = ? and password = ?";
+        cursor = sqLiteDatabase.rawQuery(query, new String[]{email, password});
 
 
         if(cursor == null){
@@ -98,10 +100,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             return false;
         }
 
+
         if(cursor.moveToFirst()) {
             Log.v("dbhelper", "user exists, cursor = " + cursor.getString(cursor.getColumnIndex("email")));
             return true;
         }
+
+        Log.v("dbhelper", "user does not exist");
 
         sqLiteDatabase.close();
 
