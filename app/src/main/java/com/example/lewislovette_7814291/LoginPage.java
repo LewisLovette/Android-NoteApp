@@ -104,9 +104,7 @@ public class LoginPage extends AppCompatActivity {
 
         Log.v("user model", "email = " + email);
         Log.v("user model", "password = " + password);
-
-        //showProgressDialog();
-
+        
         // [START sign_in_with_email]
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
