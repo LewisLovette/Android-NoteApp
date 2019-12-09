@@ -25,6 +25,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private Button back;
+
+    /**
+     * Handles back button and map setup
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +105,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
     }
 
+    /**
+     * Goes to the users current location
+     * @param currentLocation  - users current latitude and longitude
+     */
     private void zoomToCurrentLocation(LatLng currentLocation)
     {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,15));

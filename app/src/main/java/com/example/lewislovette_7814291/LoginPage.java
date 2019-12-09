@@ -30,9 +30,14 @@ public class LoginPage extends AppCompatActivity {
     private NoteModel noteModel;
     private UsersModel usersModel;
 
+    public String emailUser;
+    public String passwordUser;
     String TAG =  "Firebase Auth";
 
-
+    /**
+     * Handles login and back buttons, sets variables.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +83,9 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
+    /**
+     * Sets up firebase connection
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -86,18 +94,26 @@ public class LoginPage extends AppCompatActivity {
         updateUI(currentUser);
     }
 
-
+    /**
+     *  Handles sign in with Firebase and Locally if no internet.
+     * @param email - current users email
+     * @param password  - current users password
+     */
     private void signIn(final String email, String password) {
         Log.v(TAG, "signIn:" + email);
         if (!validateForm()) {
             return;
         }
 
+        this.emailUser = email;
+        this.passwordUser = password;
+
+        usersModel.setEmail(email);
+        usersModel.setPassword(password);
+        noteModel.setEmail((email));
+
         Log.v("user model", "email = " + email);
         Log.v("user model", "password = " + password);
-        usersModel.addUser(email, password);
-        noteModel.setEmail(email);
-        //showProgressDialog();
 
         // [START sign_in_with_email]
         mAuth.signInWithEmailAndPassword(email, password)
@@ -110,17 +126,34 @@ public class LoginPage extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
 
+                            usersModel.addUser(emailUser, passwordUser);
+
                             //If login is successful, go to navigation page
                             Intent intent = new Intent(getBaseContext(), NavigationScreen.class);
                             startActivity(intent);
                             finish();
 
                         } else {
+                            /*
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(getBaseContext(), "Authentication failed.",
+                            Toast.makeText(getBaseContext(), "Authentication failed. Trying locally",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
+                            */
+
+                            if(usersModel.exists()) {
+                                Intent intent = new Intent(getBaseContext(), NavigationScreen.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                            else{
+                                Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(getBaseContext(), "Firebase & Local Login Failed",
+                                        Toast.LENGTH_SHORT).show();
+                                updateUI(null);
+                            }
+
                         }
 
                         // [START_EXCLUDE]
@@ -131,10 +164,13 @@ public class LoginPage extends AppCompatActivity {
                         // [END_EXCLUDE]
                     }
                 });
-        // [END sign_in_with_email]
+
     }
 
-
+    /**
+     * Information on user sign in
+     * @param user
+     */
     private void updateUI(FirebaseUser user) {
 
         if (user != null) {
@@ -145,6 +181,10 @@ public class LoginPage extends AppCompatActivity {
         }
     }
 
+    /**
+     * Validates email and password information
+     * @return
+     */
     private boolean validateForm() {
         boolean valid = true;
 

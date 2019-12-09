@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,10 +35,30 @@ public class AddNoteFragment extends Fragment {
     private Button speak;
     private TextView noteToSave;
 
+    /**
+     * Constructor
+     */
     public AddNoteFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * Removes the top bar from view
+     * @param savedInstanceState
+     */
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+    }
+
+    /**
+     * Responsible for getting text input from textview or mic and saving.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -84,6 +105,12 @@ public class AddNoteFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Gets the result fron speech to text and sends to be saved
+     * @param requestCode
+     * @param resultCode
+     * @param data - speech to text
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

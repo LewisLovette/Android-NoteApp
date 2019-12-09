@@ -19,6 +19,12 @@ public class NoteAdapter extends ArrayAdapter<String> {
     private ArrayList<String> notes;
     private Context context;
 
+    /**
+     * Class constructor
+     * @param context
+     * @param resource
+     * @param notes
+     */
     public NoteAdapter(Context context, int resource, ArrayList<String> notes) {
         super(context, resource, notes);
         this.resource = resource;
@@ -26,6 +32,13 @@ public class NoteAdapter extends ArrayAdapter<String> {
         this.context = context;
     }
 
+    /**
+     * Sets up not information on the adapter.
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

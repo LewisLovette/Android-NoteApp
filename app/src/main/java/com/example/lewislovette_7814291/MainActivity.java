@@ -13,6 +13,10 @@ public class MainActivity extends AppCompatActivity {
     private Button login;
     private Button signup;
 
+    /**
+     * Handles redirect to login or signup pages
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

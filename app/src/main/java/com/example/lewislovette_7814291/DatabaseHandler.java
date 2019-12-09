@@ -81,6 +81,37 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     /**
+     * Adds a user to the database if non existent.
+     * @param email - current users email
+     * @param password  - current users password
+     * @return empty if user exists
+     */
+    public boolean userExists(String email, String password) {
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+
+        String query = "select * from userDetails where email = ? and password = ?";
+        cursor = sqLiteDatabase.rawQuery(query, new String[]{email, password});
+
+
+        if(cursor == null){
+            Log.v("dbhelper", "user does not exist");
+            return false;
+        }
+
+
+        if(cursor.moveToFirst()) {
+            Log.v("dbhelper", "user exists, cursor = " + cursor.getString(cursor.getColumnIndex("email")));
+            return true;
+        }
+
+        Log.v("dbhelper", "user does not exist");
+
+        sqLiteDatabase.close();
+
+        return false;
+    }
+
+    /**
      * Adds a note to the database associated with the current user
      * @param email - email of the current user
      * @param note - the note the user wants to add
@@ -109,7 +140,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
     public ArrayList<String> getNotes(String email) {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        ContentValues contentValues = new ContentValues();
         ArrayList<String> notes = new ArrayList<String>();
 
         String query = "select * from userNotes where email = ?";

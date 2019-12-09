@@ -16,6 +16,8 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
+    <uses-feature android:name="android.hardware.type.watch" />
+
 
     <application
         android:allowBackup="true"
@@ -51,13 +53,17 @@
 
         <activity
             android:name=".NavigationScreen"
-            android:label="@string/title_activity_navigation_screen"></activity>
+            android:label="@string/title_activity_navigation_screen"
+            android:configChanges="orientation|keyboardHidden|screenSize"></activity>
 
-        <activity android:name=".LoginPage"></activity>
+        <activity android:name=".LoginPage"
+            android:configChanges="orientation|keyboardHidden|screenSize"></activity>
 
-        <activity android:name=".SignupPage"></activity>
+        <activity android:name=".SignupPage"
+            android:configChanges="orientation|keyboardHidden|screenSize"></activity>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

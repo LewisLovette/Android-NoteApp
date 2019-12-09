@@ -9,6 +9,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,19 +39,30 @@ public class SeeNoteFragment extends Fragment {
 
     private NoteModel noteModel;
 
-    private UsersModel usersModel;
-
-    public static int[] deleteIcon = {
-            R.drawable.ic_delete_black_24dp,
-    };
-
-
+    /**
+     * Constructor for See Note Fragment
+     */
     public SeeNoteFragment() {
-
-        //testing atm - though you would pass name to the DB and it would retrieve all the notes for that person
-
+        //constructor
     }
 
+    /**
+     * Removes the top bar from view
+     * @param savedInstanceState
+     */
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+    }
+
+    /**
+     * Sets up users note with the note adapter and handles deleting notes.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -114,5 +126,6 @@ public class SeeNoteFragment extends Fragment {
         );
         return view;
     }
+
 
 }

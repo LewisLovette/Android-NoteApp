@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,10 +32,30 @@ public class ProfileFragment extends Fragment {
     UsersModel usersModel;
     TextView userEmail;
 
+    /**
+     * Constructor for profile fragment
+     */
     public ProfileFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * Removes the top bar from view
+     * @param savedInstanceState
+     */
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+    }
+
+    /**
+     * Sets the profile to users data, allows for pictures and google maps access
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,17 +74,6 @@ public class ProfileFragment extends Fragment {
         if(usersModel.hasPicture()) {
             imageView.setImageBitmap(usersModel.getProfilePic());
         }
-        //Todo: set profile pic for specific user (if it exists otherwise set default)
-        /*
-        //setting profile pic if available
-        if(usersModel.getProfilePic() == null) {
-            Log.v("GETTING PROFILE PIC", "NOT FOUND");
-        }
-        else {
-            imageView.setImageBitmap(usersModel.getProfilePic());
-        }
-        */
-
 
         imageView.setOnClickListener(new View.OnClickListener() {
 
@@ -98,6 +108,12 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Saves the users image taken within the camera app
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();

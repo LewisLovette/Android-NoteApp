@@ -53,8 +53,6 @@ public class NoteModel {
      */
     public void setEmail(String email) {
         this.email = email;
-
-        //Todo: then should pull all notes connected to this email into noteList
     }
 
     /**

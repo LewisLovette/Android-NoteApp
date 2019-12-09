@@ -98,11 +98,26 @@ public class UsersModel {
         db.setPicture(toBlob, this.email);
     }
 
+    /**
+     * Adds a user to the database
+     * @param email - current users email
+     * @param password  - current users password
+     */
     public void addUser(String email, String password){
         setEmail(email);
         setPassword(password);
 
         db.addUser(email, password);
+    }
+
+    /**
+     * Checks if a user exists
+     * @return true or false if the uesr exists
+     */
+    public boolean exists(){
+        boolean result;
+        result = db.userExists(this.email, this.password);
+        return result;
     }
 
     /**
