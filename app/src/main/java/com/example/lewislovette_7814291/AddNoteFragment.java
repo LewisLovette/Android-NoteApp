@@ -61,8 +61,7 @@ public class AddNoteFragment extends Fragment {
 
             }
         });
-
-
+        
         speak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
