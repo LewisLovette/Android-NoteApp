@@ -34,10 +34,20 @@ public class AddNoteFragment extends Fragment {
     private Button speak;
     private TextView noteToSave;
 
+    /**
+     * Constructor
+     */
     public AddNoteFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * Responsible for getting text input from textview or mic and saving.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -84,6 +94,12 @@ public class AddNoteFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Gets the result fron speech to text and sends to be saved
+     * @param requestCode
+     * @param resultCode
+     * @param data - speech to text
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
