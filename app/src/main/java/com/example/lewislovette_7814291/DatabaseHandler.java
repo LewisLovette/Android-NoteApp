@@ -88,10 +88,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
     public boolean userExists(String email, String password) {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        ContentValues contentValues = new ContentValues();
 
-        String query = "select * from userDetails where email = ? and password = ?";
-        cursor = sqLiteDatabase.rawQuery(query, new String[] {email, password});
+        cursor = sqLiteDatabase.query("userDetails", new String[]{"email", "password"},
+                "email = "+email+" AND password = "+password, null, null, null, null);
+
+
+        if(cursor == null){
+            Log.v("dbhelper", "user does not exist");
+            return false;
+        }
 
         if(cursor.moveToFirst()) {
             Log.v("dbhelper", "user exists, cursor = " + cursor.getString(cursor.getColumnIndex("email")));
@@ -100,7 +105,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         sqLiteDatabase.close();
 
-        Log.v("dbhelper", "user does not exist" + cursor.getString(cursor.getColumnIndex("email")));
         return false;
     }
 
@@ -133,7 +137,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
     public ArrayList<String> getNotes(String email) {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        ContentValues contentValues = new ContentValues();
         ArrayList<String> notes = new ArrayList<String>();
 
         String query = "select * from userNotes where email = ?";

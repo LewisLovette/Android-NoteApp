@@ -30,6 +30,8 @@ public class LoginPage extends AppCompatActivity {
     private NoteModel noteModel;
     private UsersModel usersModel;
 
+    public String emailUser;
+    public String passwordUser;
     String TAG =  "Firebase Auth";
 
 
@@ -93,10 +95,12 @@ public class LoginPage extends AppCompatActivity {
             return;
         }
 
+        this.emailUser = email;
+        this.passwordUser = password;
+
         Log.v("user model", "email = " + email);
         Log.v("user model", "password = " + password);
-        usersModel.addUser(email, password);
-        noteModel.setEmail(email);
+
         //showProgressDialog();
 
         // [START sign_in_with_email]
@@ -109,6 +113,9 @@ public class LoginPage extends AppCompatActivity {
                             Log.v(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+
+                            usersModel.addUser(emailUser, passwordUser);
+                            noteModel.setEmail(emailUser);
 
                             //If login is successful, go to navigation page
                             Intent intent = new Intent(getBaseContext(), NavigationScreen.class);
@@ -146,7 +153,7 @@ public class LoginPage extends AppCompatActivity {
                         // [END_EXCLUDE]
                     }
                 });
-        // [END sign_in_with_email]
+
     }
 
 
