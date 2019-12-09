@@ -81,6 +81,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     /**
+     * Adds a user to the database if non existent.
+     * @param email - current users email
+     * @param password  - current users password
+     * @return empty if user exists
+     */
+    public boolean userExists(String email, String password) {
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        String query = "select * from userDetails where email = ? and password = ?";
+        cursor = sqLiteDatabase.rawQuery(query, new String[] {email, password});
+
+        if(cursor.moveToFirst()) {
+            Log.v("dbhelper", "user exists, cursor = " + cursor.getString(cursor.getColumnIndex("email")));
+            return true;
+        }
+
+        sqLiteDatabase.close();
+
+        Log.v("dbhelper", "user does not exist" + cursor.getString(cursor.getColumnIndex("email")));
+        return false;
+    }
+
+    /**
      * Adds a note to the database associated with the current user
      * @param email - email of the current user
      * @param note - the note the user wants to add

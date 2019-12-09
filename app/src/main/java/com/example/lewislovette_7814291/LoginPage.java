@@ -121,11 +121,17 @@ public class LoginPage extends AppCompatActivity {
                             Toast.makeText(getBaseContext(), "Authentication failed. Trying locally",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
-                            
+
                             if(usersModel.exists()) {
                                 Intent intent = new Intent(getBaseContext(), NavigationScreen.class);
                                 startActivity(intent);
                                 finish();
+                            }
+                            else{
+                                Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(getBaseContext(), "Local Login Failed",
+                                        Toast.LENGTH_SHORT).show();
+                                updateUI(null);
                             }
 
                         }
