@@ -87,8 +87,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * @return empty if user exists
      */
     public boolean userExists(String email, String password) {
-        email = "lewisl@gmail.com";
-        password = "123abc";
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
 
         String query = "select * from userDetails where email = ? and password = ?";
