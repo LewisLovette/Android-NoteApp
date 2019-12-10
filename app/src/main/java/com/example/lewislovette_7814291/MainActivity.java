@@ -11,7 +11,6 @@ import android.widget.Button;
  */
 public class MainActivity extends AppCompatActivity {
 
-    public String currentUser;
     private Button login;
     private Button signup;
 

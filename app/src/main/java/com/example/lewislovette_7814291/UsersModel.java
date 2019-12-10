@@ -34,7 +34,7 @@ public class UsersModel {
     /**
      * Class constructor, only used by Singleton when first instantiating class.
      */
-    public UsersModel(){
+    private UsersModel(){
 
     }
 
@@ -64,7 +64,6 @@ public class UsersModel {
      */
     public Bitmap getProfilePic() {
 
-        //Todo: return profile pic from db
         byte[] blob = db.getPicture(email);    //retrieve profile pic for specific user
 
 
