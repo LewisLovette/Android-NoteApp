@@ -5,6 +5,9 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+/**
+ * Responsible for the users notes
+ */
 public class NoteModel {
     //Deals with notes
     private String email;

@@ -9,6 +9,9 @@ import android.view.View;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
+/**
+ * Responsible for the user details
+ */
 public class UsersModel {
     //Dealing with user data
     private String email;

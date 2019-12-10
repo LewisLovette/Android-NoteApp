@@ -13,6 +13,9 @@ import java.util.ArrayList;
 
 import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
 
+/**
+ * Responsible for traffic in/out of the database
+ */
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     Cursor cursor;
@@ -50,7 +53,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * Adds a user to the database if non existent.
      * @param email - current users email
      * @param password  - current users password
-     * @return empty if user exists
      */
     public void addUser(String email, String password) {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();

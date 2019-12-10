@@ -18,6 +18,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * Responsible for the  {@link SignupPage} view
+ */
 public class SignupPage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;

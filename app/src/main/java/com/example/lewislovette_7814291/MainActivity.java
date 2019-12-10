@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-
+/**
+ * Handles redirect to login/signup pages
+ */
 public class MainActivity extends AppCompatActivity {
 
     public String currentUser;

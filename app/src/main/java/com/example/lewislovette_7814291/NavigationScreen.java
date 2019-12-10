@@ -9,7 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-
+/**
+ * Handles navigation bar
+ */
 public class NavigationScreen extends AppCompatActivity {
 
 

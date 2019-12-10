@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+/**
+ * Responsible for managing note list
+ */
 public class NoteAdapter extends ArrayAdapter<String> {
 
     private int resource;
@@ -37,7 +40,7 @@ public class NoteAdapter extends ArrayAdapter<String> {
      * @param position
      * @param convertView
      * @param parent
-     * @return
+     * @return view
      */
     @NonNull
     @Override
