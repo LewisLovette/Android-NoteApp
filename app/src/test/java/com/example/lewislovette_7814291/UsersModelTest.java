@@ -22,9 +22,6 @@ import org.mockito.junit.MockitoRule;
 
 public class UsersModelTest {
 
-  View view = Mockito.mock(View.class);
-  UsersModel usersModel = UsersModel.getInstance();
-
   @Rule
   public MockitoRule rule = MockitoJUnit.rule();
 
